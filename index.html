@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>合同会社Zanith | AIが動かす、次世代の経営</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --cyan: #00e5ff;
+      --cyan-dim: #00b8cc;
+      --bg: #04040f;
+      --bg2: #08081a;
+      --bg3: #0d0d24;
+      --text: #d8d8e8;
+      --text-dim: #8888aa;
+      --border: rgba(201,168,76,0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Serif JP', serif;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* グリッド背景 */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ナビ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(4,4,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-shadow: 0 0 20px rgba(201,168,76,0.5);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    /* ヒーロー */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      z-index: 1;
+    }
+
+    .hero-sub {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      color: var(--cyan);
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 10px rgba(0,229,255,0.6);
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 40px rgba(201,168,76,0.4), 0 0 80px rgba(201,168,76,0.15);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero-kanji {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--gold-light);
+      letter-spacing: 0.5em;
+      margin-bottom: 2rem;
+      opacity: 0.7;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: var(--text);
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      margin-bottom: 3rem;
+    }
+
+    .hero-tagline span { color: var(--cyan); }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+      z-index: -1;
+    }
+
+    .btn-primary:hover { color: var(--bg); }
+    .btn-primary:hover::before { transform: translateX(0); }
+
+    /* セクション共通 */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.5em;
+      color: var(--cyan);
+      margin-bottom: 0.8rem;
+      text-shadow: 0 0 8px rgba(0,229,255,0.5);
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-desc {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+      max-width: 600px;
+    }
+
+    /* サービス */
+    #services { background: transparent; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      border: 1px solid var(--border);
+      background: rgba(13,13,36,0.6);
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+      backdrop-filter: blur(4px);
+    }
+
+    .service-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.15rem;
+      color: var(--gold-light);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.9;
+    }
+
+    /* 実績 */
+    #achievements {
+      background: linear-gradient(180deg, transparent, rgba(8,8,26,0.8), transparent);
+    }
+
+    .achievements-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .achievement-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.5rem;
+      border-left: 2px solid var(--gold);
+      background: rgba(13,13,36,0.4);
+    }
+
+    .achievement-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: var(--gold);
+      opacity: 0.4;
+      line-height: 1;
+      min-width: 2.5rem;
+    }
+
+    .achievement-content h3 {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.05em;
+    }
+
+    .achievement-content p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.6rem;
+      border: 1px solid var(--cyan-dim);
+      color: var(--cyan);
+      font-size: 0.65rem;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 0.1em;
+      margin-left: 0.8rem;
+      vertical-align: middle;
+    }
+
+    /* 料金 */
+    #pricing {}
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .pricing-card {
+      border: 1px solid var(--border);
+      background: rgba(8,8,26,0.7);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--gold);
+      background: rgba(13,13,36,0.9);
+    }
+
+    .pricing-card.featured::before {
+      content: 'RECOMMENDED';
+      position: absolute;
+      top: -1px; left: 50%; transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--bg);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      padding: 0.3rem 1rem;
+    }
+
+    .pricing-plan {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+    }
+
+    .pricing-price {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      color: var(--gold-light);
+      margin-bottom: 0.3rem;
+    }
+
+    .pricing-price span {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-family: 'Noto Serif JP', serif;
+    }
+
+    .pricing-init {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 2.2;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features li::before {
+      content: '▸ ';
+      color: var(--gold);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.7rem 2rem;
+      border: 1px solid var(--text-dim);
+      color: var(--text-dim);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover, .pricing-card.featured .btn-outline {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* 問い合わせ */
+    #contact {
+      background: linear-gradient(180deg, transparent, rgba(8,8,26,0.8));
+    }
+
+    .contact-inner {
+      max-width: 640px;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(8,8,26,0.8);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.8rem 1rem;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group select option { background: var(--bg2); }
+
+    .form-group textarea { min-height: 140px; resize: vertical; }
+
+    .btn-submit {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+      z-index: -1;
+    }
+
+    .btn-submit:hover { color: var(--bg); }
+    .btn-submit:hover::before { transform: translateX(0); }
+
+    /* フッター */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      margin-bottom: 0.5rem;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    /* スクロールアニメ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .achievement-item { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">ZANITH</div>
+    <ul class="nav-links">
+      <li><a href="#services">サービス</a></li>
+      <li><a href="#achievements">実績</a></li>
+      <li><a href="#pricing">料金</a></li>
+      <li><a href="#contact">お問い合わせ</a></li>
+    </ul>
+  </nav>
+
+  <!-- ヒーロー -->
+  <section id="hero">
+    <p class="hero-sub">GODO KAISHA ZANITH</p>
+    <h1 class="hero-title">ZANITH</h1>
+    <p class="hero-kanji">頂 — 最高点へ</p>
+    <p class="hero-tagline">AIが動かす、<span>次世代の経営</span></p>
+    <a href="#contact" class="btn-primary">無料相談を申し込む</a>
+  </section>
+
+  <!-- サービス -->
+  <section id="services">
+    <div class="fade-in">
+      <p class="section-label">SERVICES</p>
+      <h2 class="section-title">サービス</h2>
+      <p class="section-desc">AIエージェントによる業務自動化で、地方中小企業の競争力を変革します。</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <p class="service-icon">SERVICE / 01</p>
+        <h3>DX支援・AIシステム開発</h3>
+        <p>発注・在庫・シフト管理などの業務フローをAIで自動化。現場の課題から設計・実装・運用まで一貫サポート。</p>
+      </div>
+      <div class="service-card fade-in">
+        <p class="service-icon">SERVICE / 02</p>
+        <h3>SNS自動発信</h3>
+        <p>AIがコンテンツを生成・スケジュール・投稿。人手ゼロでブランディングと集客を継続する仕組みを構築します。</p>
+      </div>
+      <div class="service-card fade-in">
+        <p class="service-icon">SERVICE / 03</p>
+        <h3>給食管理SaaS</h3>
+        <p>介護施設・保育施設向けの給食発注・献立・在庫管理システム。クラウドで複数施設を一元管理できます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 実績 -->
+  <section id="achievements">
+    <div class="fade-in">
+      <p class="section-label">ACHIEVEMENTS</p>
+      <h2 class="section-title">実績</h2>
+      <p class="section-desc">小さく始め、確実に動くシステムを届けることを信条としています。</p>
+    </div>
+    <div class="achievements-list fade-in">
+      <div class="achievement-item">
+        <div class="achievement-num">01</div>
+        <div class="achievement-content">
+          <h3>介護施設向け給食管理システム <span class="badge">LIVE</span></h3>
+          <p>5施設・365日3食対応。献立・発注・在庫管理をクラウドで一元化。Renderにて本番稼働中。</p>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-num">02</div>
+        <div class="achievement-content">
+          <h3>LINE AIエージェント開発 <span class="badge">LIVE</span></h3>
+          <p>Claude APIを活用したタスク管理・ニュース要約・X自動投稿機能を持つ経営支援エージェント。</p>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-num">03</div>
+        <div class="achievement-content">
+          <h3>発注自動化システム（Phase1）<span class="badge">IN PROGRESS</span></h3>
+          <p>給食会社の食材発注業務を完全自動化。ヒアリング〜設計フェーズ進行中。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 料金 -->
+  <section id="pricing">
+    <div class="fade-in">
+      <p class="section-label">PRICING</p>
+      <h2 class="section-title">料金プラン</h2>
+      <p class="section-desc">すべてのプランに初回ヒアリング・要件定義が含まれます。契約は月単位、いつでも解約可能です。</p>
+    </div>
+    <div class="pricing-grid fade-in">
+      <div class="pricing-card">
+        <p class="pricing-plan">LIGHT</p>
+        <div class="pricing-price">3<span>万円 / 月</span></div>
+        <p class="pricing-init">初期費用：3万円〜</p>
+        <ul class="pricing-features">
+          <li>SNS自動発信（月20投稿）</li>
+          <li>AIニュースダイジェスト</li>
+          <li>メールサポート</li>
+        </ul>
+        <a href="#contact" class="btn-outline">相談する</a>
+      </div>
+      <div class="pricing-card featured">
+        <p class="pricing-plan">STANDARD</p>
+        <div class="pricing-price">8<span>万円 / 月</span></div>
+        <p class="pricing-init">初期費用：10万円〜</p>
+        <ul class="pricing-features">
+          <li>業務自動化システム開発</li>
+          <li>SNS自動発信</li>
+          <li>AIエージェント導入</li>
+          <li>月次レポート</li>
+          <li>チャット・電話サポート</li>
+        </ul>
+        <a href="#contact" class="btn-outline">相談する</a>
+      </div>
+      <div class="pricing-card">
+        <p class="pricing-plan">PREMIUM</p>
+        <div class="pricing-price">15<span>万円 / 月</span></div>
+        <p class="pricing-init">初期費用：別途お見積り</p>
+        <ul class="pricing-features">
+          <li>フルスタックDX支援</li>
+          <li>複数システム統合</li>
+          <li>専任エージェント割り当て</li>
+          <li>週次ミーティング</li>
+          <li>優先対応・24hサポート</li>
+        </ul>
+        <a href="#contact" class="btn-outline">相談する</a>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem; font-size:0.8rem; color:var(--text-dim);">※ 給食管理SaaSは別途お見積り。小規模事業者向け割引あり。</p>
+  </section>
+
+  <!-- 問い合わせ -->
+  <section id="contact">
+    <div class="fade-in contact-inner">
+      <p class="section-label">CONTACT</p>
+      <h2 class="section-title">お問い合わせ</h2>
+      <p class="section-desc">まずは無料相談から。現状の課題をお聞かせください。</p>
+      <!-- action を Formspree の URL に差し替えてください -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label>会社名 / 屋号</label>
+          <input type="text" name="company" placeholder="例：株式会社〇〇">
+        </div>
+        <div class="form-group">
+          <label>お名前 *</label>
+          <input type="text" name="name" required placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label>メールアドレス *</label>
+          <input type="email" name="email" required placeholder="example@mail.com">
+        </div>
+        <div class="form-group">
+          <label>ご興味のあるサービス</label>
+          <select name="service">
+            <option value="">選択してください</option>
+            <option>DX支援・AIシステム開発</option>
+            <option>SNS自動発信</option>
+            <option>給食管理SaaS</option>
+            <option>その他・まず話を聞きたい</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>お問い合わせ内容</label>
+          <textarea name="message" placeholder="現在の課題や気になることを自由にご記入ください。"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">送信する</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">ZANITH</div>
+    <p>&copy; 2026 合同会社Zanith. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // スクロールアニメ
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
