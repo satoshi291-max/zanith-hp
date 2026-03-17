@@ -293,7 +293,6 @@
     }
 
     /* 料金 */
-    #pricing {}
 
     .pricing-grid {
       display: grid;
@@ -636,36 +635,17 @@
       <p class="section-label">CONTACT</p>
       <h2 class="section-title">お問い合わせ</h2>
       <p class="section-desc">まずは無料相談から。現状の課題をお聞かせください。</p>
-      <!-- action を Formspree の URL に差し替えてください -->
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div class="form-group">
-          <label>会社名 / 屋号</label>
-          <input type="text" name="company" placeholder="例：株式会社〇〇">
-        </div>
-        <div class="form-group">
-          <label>お名前 *</label>
-          <input type="text" name="name" required placeholder="山田 太郎">
-        </div>
-        <div class="form-group">
-          <label>メールアドレス *</label>
-          <input type="email" name="email" required placeholder="example@mail.com">
-        </div>
-        <div class="form-group">
-          <label>ご興味のあるサービス</label>
-          <select name="service">
-            <option value="">選択してください</option>
-            <option>DX支援・AIシステム開発</option>
-            <option>SNS自動発信</option>
-            <option>給食管理SaaS</option>
-            <option>その他・まず話を聞きたい</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>お問い合わせ内容</label>
-          <textarea name="message" placeholder="現在の課題や気になることを自由にご記入ください。"></textarea>
-        </div>
-        <button type="submit" class="btn-submit">送信する</button>
-      </form>
+      <div style="border: 1px solid var(--border); padding: 2.5rem; background: rgba(8,8,26,0.6); margin-bottom: 2rem;">
+        <p style="font-size:0.9rem; color:var(--text-dim); line-height:2.2; margin-bottom:1.5rem;">
+          下記ボタンよりメールにてご連絡ください。<br>
+          会社名・お名前・ご興味のあるサービス・現状の課題を添えてご送信いただくと、よりスムーズにご対応できます。<br>
+          <span style="color:var(--cyan); font-size:0.8rem;">通常2営業日以内にご返信いたします。</span>
+        </p>
+        <a href="mailto:info@zanith.jp?subject=Zanithへのお問い合わせ&body=【会社名・屋号】%0A%0A【お名前】%0A%0A【ご興味のあるサービス】%0ADX支援・AIシステム開発 / SNS自動発信 / 給食管理SaaS / その他%0A%0A【現在の課題・ご相談内容】%0A" class="btn-submit" style="display:inline-block; text-decoration:none;">
+          メールで相談する
+        </a>
+      </div>
+      <p style="font-size:0.75rem; color:var(--text-dim);">連絡先：<span style="color:var(--gold);">info@zanith.jp</span></p>
     </div>
   </section>
 
