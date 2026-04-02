@@ -3,23 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>合同会社Zanith | AIが動かす、次世代の経営</title>
+  <title>Zanith | 地域中小企業の課題解決パートナー</title>
+  <meta name="description" content="愛媛・茨城・北海道の中小企業に特化した課題解決パートナー。業務効率化・情報発信・経営設計を現場から伴走支援。2026年8月本格始動。">
+  <meta property="og:title" content="Zanith | 地域中小企業の課題解決パートナー">
+  <meta property="og:description" content="愛媛・茨城・北海道の中小企業に特化した課題解決パートナー。提案だけして終わりではなく、導入・定着まで伴走します。">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Zanith",
+    "description": "愛媛・茨城・北海道の中小企業に特化した経営課題解決パートナー。業務効率化・情報発信支援・経営課題の整理と設計を、現場から導入・定着まで伴走支援する。",
+    "url": "https://satoshi291-max.github.io/zanith-hp/",
+    "email": "info@zanith.jp",
+    "areaServed": [
+      { "@type": "State", "name": "愛媛県" },
+      { "@type": "State", "name": "茨城県" },
+      { "@type": "State", "name": "北海道" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "支援メニュー",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "業務効率化支援", "description": "発注・在庫・シフト・請求などの手作業を仕組みに変える" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "情報発信支援", "description": "SNS・HPの発信体制を人手ゼロで継続できる仕組みに変える" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "経営課題の整理・設計", "description": "現状分析・優先順位付け・改善ロードマップの策定" } }
+      ]
+    },
+    "foundingDate": "2026",
+    "knowsAbout": ["中小企業DX", "業務自動化", "経営課題解決", "情報発信", "給食管理システム"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Zanithはどんな企業が相談できますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "愛媛・茨城・北海道に拠点を持つ中小企業を主な対象としています。業種は問いません。「何から手をつければいいかわからない」という状態からでも対応できます。" }
+      },
+      {
+        "@type": "Question",
+        "name": "AIやDXの知識がなくても相談できますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "はい。特定のツールを売るのではなく、御社の現状に合った方法を一緒に考えます。専門知識は不要です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "Zanithの費用・料金はいくらですか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "現状把握フェーズ（PHASE 0）は月10万円〜が目安です。支援規模・内容によって変動します。初回相談は無料です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "今すぐZanithに相談できますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "お問い合わせはいつでも受け付けています。現在は2026年8月の本格始動に向けた準備期間中のため、ご返信まで3〜5営業日いただく場合があります。" }
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold: #c9a84c;
-      --gold-light: #e8c97a;
       --cyan: #00e5ff;
       --cyan-dim: #00b8cc;
+      --cyan-glow: rgba(0,229,255,0.15);
       --bg: #04040f;
       --bg2: #08081a;
       --bg3: #0d0d24;
       --text: #d8d8e8;
       --text-dim: #8888aa;
-      --border: rgba(201,168,76,0.25);
+      --border: rgba(0,229,255,0.15);
+      --border-strong: rgba(0,229,255,0.35);
     }
 
     html { scroll-behavior: smooth; }
@@ -30,6 +89,31 @@
       font-family: 'Noto Serif JP', serif;
       line-height: 1.8;
       overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* カーソルグロー */
+    .cursor-dot {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--cyan);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+      box-shadow: 0 0 6px var(--cyan), 0 0 12px var(--cyan);
+    }
+
+    .cursor-glow {
+      position: fixed;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,229,255,0.07), transparent 70%);
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: left 0.15s ease, top 0.15s ease;
     }
 
     /* グリッド背景 */
@@ -38,8 +122,8 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(0,229,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.025) 1px, transparent 1px);
       background-size: 60px 60px;
       pointer-events: none;
       z-index: 0;
@@ -54,18 +138,12 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.2rem 4rem;
-      background: rgba(4,4,15,0.85);
+      background: rgba(4,4,15,0.9);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
 
-    .nav-logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.4rem;
-      color: var(--gold);
-      letter-spacing: 0.15em;
-      text-shadow: 0 0 20px rgba(201,168,76,0.5);
-    }
+    .nav-logo img { height: 32px; vertical-align: middle; }
 
     .nav-links {
       display: flex;
@@ -79,66 +157,122 @@
       font-size: 0.85rem;
       letter-spacing: 0.1em;
       transition: color 0.3s;
+      cursor: none;
     }
 
     .nav-links a:hover { color: var(--cyan); }
 
+    /* 8月始動バナー */
+    .launch-banner {
+      position: relative;
+      z-index: 10;
+      margin-top: 72px;
+      background: linear-gradient(90deg, transparent, rgba(0,229,255,0.06), transparent);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      padding: 0.7rem 2rem;
+    }
+
+    .launch-banner p {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      color: var(--cyan);
+      text-shadow: 0 0 8px rgba(0,229,255,0.5);
+    }
+
+    .launch-banner span { margin: 0 1.2rem; color: var(--border-strong); }
+
     /* ヒーロー */
     #hero {
       position: relative;
-      min-height: 100vh;
+      min-height: calc(100vh - 72px - 42px);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 6rem 2rem 4rem;
+      padding: 4rem 2rem;
       z-index: 1;
+    }
+
+    .hero-region {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .region-badge {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--cyan-dim);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.8rem;
     }
 
     .hero-sub {
       font-family: 'Orbitron', sans-serif;
       font-size: 0.75rem;
       letter-spacing: 0.4em;
-      color: var(--cyan);
+      color: var(--text-dim);
       margin-bottom: 1.5rem;
-      text-shadow: 0 0 10px rgba(0,229,255,0.6);
     }
 
     .hero-title {
       font-family: 'Orbitron', sans-serif;
       font-size: clamp(3rem, 8vw, 6.5rem);
       font-weight: 700;
-      color: var(--gold);
+      color: var(--cyan);
       letter-spacing: 0.1em;
-      text-shadow: 0 0 40px rgba(201,168,76,0.4), 0 0 80px rgba(201,168,76,0.15);
+      text-shadow: 0 0 40px rgba(0,229,255,0.5), 0 0 80px rgba(0,229,255,0.2);
       line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .hero-kanji {
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      color: var(--gold-light);
-      letter-spacing: 0.5em;
-      margin-bottom: 2rem;
-      opacity: 0.7;
+      margin-bottom: 1.5rem;
     }
 
     .hero-tagline {
-      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
       color: var(--text);
       font-weight: 300;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+      max-width: 700px;
+      min-height: 2.4rem;
+    }
+
+    /* タイプライターカーソル */
+    .typewriter-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--cyan);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-sub-tagline {
+      font-size: 0.9rem;
+      color: var(--text-dim);
       margin-bottom: 3rem;
     }
 
-    .hero-tagline span { color: var(--cyan); }
+    .hero-sub-tagline span { color: var(--cyan); }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
     .btn-primary {
       display: inline-block;
       padding: 1rem 2.5rem;
-      border: 1px solid var(--gold);
-      color: var(--gold);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
       text-decoration: none;
       font-family: 'Orbitron', sans-serif;
       font-size: 0.8rem;
@@ -146,13 +280,14 @@
       transition: all 0.3s;
       position: relative;
       overflow: hidden;
+      cursor: none;
     }
 
     .btn-primary::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: var(--gold);
+      background: var(--cyan);
       transform: translateX(-100%);
       transition: transform 0.3s;
       z-index: -1;
@@ -160,6 +295,21 @@
 
     .btn-primary:hover { color: var(--bg); }
     .btn-primary:hover::before { transform: translateX(0); }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border: 1px solid var(--border-strong);
+      color: var(--text-dim);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      transition: all 0.3s;
+      cursor: none;
+    }
+
+    .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
 
     /* セクション共通 */
     section {
@@ -182,7 +332,7 @@
     .section-title {
       font-size: clamp(1.6rem, 3vw, 2.2rem);
       font-weight: 600;
-      color: var(--gold-light);
+      color: var(--text);
       letter-spacing: 0.08em;
       margin-bottom: 1rem;
       padding-bottom: 1rem;
@@ -193,12 +343,52 @@
       color: var(--text-dim);
       font-size: 0.95rem;
       margin-bottom: 3rem;
-      max-width: 600px;
+      max-width: 640px;
+      line-height: 2;
     }
 
-    /* サービス */
-    #services { background: transparent; }
+    /* 思い */
+    #mission { background: linear-gradient(180deg, transparent, rgba(0,229,255,0.02), transparent); }
 
+    .mission-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .mission-quote {
+      border-left: 3px solid var(--cyan);
+      padding: 2rem;
+      background: rgba(0,229,255,0.04);
+      font-size: 1.05rem;
+      line-height: 2.2;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+
+    .mission-detail { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .mission-item {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      background: rgba(8,8,26,0.6);
+      transition: border-color 0.3s;
+    }
+
+    .mission-item:hover { border-color: var(--cyan-dim); }
+
+    .mission-item-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--cyan);
+      margin-bottom: 0.6rem;
+    }
+
+    .mission-item p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.9; }
+
+    /* サービス */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -209,13 +399,58 @@
       border: 1px solid var(--border);
       background: rgba(13,13,36,0.6);
       padding: 2rem;
-      transition: border-color 0.3s, transform 0.3s;
-      backdrop-filter: blur(4px);
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      cursor: none;
     }
 
     .service-card:hover {
-      border-color: var(--gold);
+      border-color: var(--cyan-dim);
       transform: translateY(-4px);
+      box-shadow: 0 0 24px rgba(0,229,255,0.08);
+    }
+
+    /* ===== びりびり（グリッチ＋エレクトリック） ===== */
+
+    /* テキストグリッチ */
+    @keyframes glitch {
+      0%   { transform: translate(0);        text-shadow: 0 0 8px var(--cyan); }
+      20%  { transform: translate(-2px, 1px); text-shadow: -2px 0 #ff00ff, 2px 0 var(--cyan); }
+      40%  { transform: translate(2px, -1px); text-shadow: 2px 0 #ff00ff, -2px 0 var(--cyan); }
+      60%  { transform: translate(-1px, 2px); text-shadow: 0 0 8px var(--cyan); }
+      80%  { transform: translate(1px,-1px);  text-shadow: -1px 0 #ff00ff, 1px 0 var(--cyan); }
+      100% { transform: translate(0);        text-shadow: 0 0 8px var(--cyan); }
+    }
+
+    /* カード枠エレクトリック */
+    @keyframes electric {
+      0%   { border-color: var(--border);       box-shadow: none;                                  transform: translate(0); }
+      15%  { border-color: var(--cyan);          box-shadow: 0 0 8px var(--cyan),-2px 0 6px #ff00ff; transform: translate(-1px,0); }
+      30%  { border-color: #ff00ff;              box-shadow: 2px 0 8px #ff00ff, 0 0 4px var(--cyan); transform: translate(1px,0); }
+      45%  { border-color: var(--cyan);          box-shadow: 0 0 14px var(--cyan);                 transform: translate(0); }
+      60%  { border-color: var(--cyan-dim);      box-shadow: -1px 0 5px var(--cyan);               transform: translate(-0.5px,0); }
+      80%  { border-color: var(--cyan);          box-shadow: 1px 0 5px #ff00ff;                    transform: translate(0.5px,0); }
+      100% { border-color: var(--cyan-dim);      box-shadow: 0 0 16px rgba(0,229,255,0.06);        transform: translate(0); }
+    }
+
+    /* テキストグリッチを当てる要素 */
+    .service-card:hover .service-icon,
+    .mission-item:hover .mission-item-label,
+    .coverage-region:hover .coverage-region-name,
+    .achievement-item:hover .achievement-content h3,
+    .case-slide:hover .case-num,
+    .section-title:hover,
+    .nav-links a:hover {
+      animation: glitch 0.35s ease;
+    }
+
+    /* カード枠エレクトリックを当てる要素 */
+    .service-card:hover,
+    .mission-item:hover,
+    .coverage-region:hover,
+    .achievement-item:hover,
+    .case-slide:hover,
+    .preregister-inner:hover {
+      animation: electric 0.5s ease forwards;
     }
 
     .service-icon {
@@ -226,176 +461,307 @@
       margin-bottom: 1rem;
     }
 
-    .service-card h3 {
-      font-size: 1.15rem;
-      color: var(--gold-light);
-      margin-bottom: 0.8rem;
-      letter-spacing: 0.05em;
-    }
+    .service-card h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 0.8rem; letter-spacing: 0.05em; }
+    .service-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.9; }
 
-    .service-card p {
-      font-size: 0.88rem;
-      color: var(--text-dim);
-      line-height: 1.9;
-    }
-
-    /* 実績 */
-    #achievements {
+    /* ===== 事例スライダー ===== */
+    #cases {
+      max-width: 100%;
+      padding: 6rem 0;
+      overflow: hidden;
       background: linear-gradient(180deg, transparent, rgba(8,8,26,0.8), transparent);
     }
 
-    .achievements-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
+    .cases-header {
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
     }
 
-    .achievement-item {
-      display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
-      padding: 1.5rem;
-      border-left: 2px solid var(--gold);
-      background: rgba(13,13,36,0.4);
+    .slider-outer {
+      position: relative;
     }
 
-    .achievement-num {
+    .slider-track-wrap {
+      overflow: hidden;
+      padding: 1rem 0 2rem;
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .case-slide {
+      min-width: 760px;
+      width: 760px;
+      margin: 0 1.5rem;
+      border: 1px solid var(--border);
+      background: rgba(8,8,26,0.7);
+      padding: 3rem;
+      flex-shrink: 0;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-slide::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    }
+
+    .case-slide.active {
+      border-color: var(--border-strong);
+      box-shadow: 0 0 30px rgba(0,229,255,0.06);
+    }
+
+    .case-num {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      color: var(--gold);
-      opacity: 0.4;
-      line-height: 1;
-      min-width: 2.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      color: var(--cyan);
+      margin-bottom: 0.5rem;
     }
 
-    .achievement-content h3 {
-      font-size: 1rem;
+    .case-client {
+      font-size: 1.1rem;
       color: var(--text);
-      margin-bottom: 0.4rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .case-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .case-block-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--text-dim);
+      margin-bottom: 0.6rem;
+    }
+
+    .case-block p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.9; }
+    .case-block ul { list-style: none; }
+    .case-block ul li { font-size: 0.88rem; color: var(--text-dim); line-height: 2; }
+    .case-block ul li::before { content: '▸ '; color: var(--cyan); }
+
+    /* カウンター */
+    .case-stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      color: var(--cyan);
+      text-shadow: 0 0 20px rgba(0,229,255,0.4);
+      line-height: 1;
+    }
+
+    .stat-unit {
+      font-size: 0.8rem;
+      color: var(--cyan);
+      margin-left: 2px;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-top: 0.3rem;
       letter-spacing: 0.05em;
     }
 
-    .achievement-content p {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-    }
-
-    .badge {
+    .case-badge {
       display: inline-block;
-      padding: 0.15rem 0.6rem;
+      padding: 0.2rem 0.7rem;
       border: 1px solid var(--cyan-dim);
       color: var(--cyan);
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-family: 'Orbitron', sans-serif;
       letter-spacing: 0.1em;
       margin-left: 0.8rem;
       vertical-align: middle;
     }
 
-    /* 料金 */
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1.5rem;
+    .case-badge.progress {
+      border-color: rgba(255,180,50,0.5);
+      color: #ffb432;
     }
 
-    .pricing-card {
-      border: 1px solid var(--border);
-      background: rgba(8,8,26,0.7);
-      padding: 2.5rem 2rem;
+    .case-soon {
+      min-width: 400px;
+      width: 400px;
+      margin: 0 1.5rem;
+      border: 1px dashed var(--border);
+      background: rgba(8,8,26,0.4);
+      padding: 3rem;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      position: relative;
-      transition: border-color 0.3s;
+      gap: 1rem;
     }
 
-    .pricing-card.featured {
-      border-color: var(--gold);
-      background: rgba(13,13,36,0.9);
-    }
-
-    .pricing-card.featured::before {
-      content: 'RECOMMENDED';
-      position: absolute;
-      top: -1px; left: 50%; transform: translateX(-50%);
-      background: var(--gold);
-      color: var(--bg);
+    .case-soon-label {
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.2em;
-      padding: 0.3rem 1rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      color: var(--border-strong);
     }
 
-    .pricing-plan {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
+    .case-soon p { font-size: 0.85rem; color: var(--text-dim); }
+
+    /* スライダーコントロール */
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .slider-btn {
+      background: transparent;
+      border: 1px solid var(--border-strong);
       color: var(--cyan);
-      margin-bottom: 1rem;
-    }
-
-    .pricing-price {
+      width: 44px; height: 44px;
+      font-size: 1rem;
+      cursor: none;
+      transition: all 0.3s;
+      display: flex; align-items: center; justify-content: center;
       font-family: 'Orbitron', sans-serif;
-      font-size: 2.2rem;
-      color: var(--gold-light);
-      margin-bottom: 0.3rem;
     }
 
-    .pricing-price span {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      font-family: 'Noto Serif JP', serif;
+    .slider-btn:hover {
+      background: var(--cyan-glow);
+      border-color: var(--cyan);
     }
 
-    .pricing-init {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      margin-bottom: 1.5rem;
-    }
+    .slider-btn:disabled { opacity: 0.3; pointer-events: none; }
 
-    .pricing-features {
-      list-style: none;
-      text-align: left;
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      line-height: 2.2;
-      margin-bottom: 2rem;
-    }
+    .slider-dots { display: flex; gap: 0.5rem; }
 
-    .pricing-features li::before {
-      content: '▸ ';
-      color: var(--gold);
-    }
-
-    .btn-outline {
-      display: inline-block;
-      padding: 0.7rem 2rem;
-      border: 1px solid var(--text-dim);
-      color: var(--text-dim);
-      text-decoration: none;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
+    .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--border-strong);
+      cursor: none;
       transition: all 0.3s;
     }
 
-    .btn-outline:hover, .pricing-card.featured .btn-outline {
-      border-color: var(--gold);
-      color: var(--gold);
+    .dot.active {
+      background: var(--cyan);
+      box-shadow: 0 0 6px var(--cyan);
     }
+
+    /* 先行登録 */
+    #preregister { background: linear-gradient(180deg, transparent, rgba(0,229,255,0.02), transparent); }
+
+    .preregister-inner {
+      border: 1px solid var(--border-strong);
+      background: rgba(0,229,255,0.03);
+      padding: 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preregister-inner::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at center, rgba(0,229,255,0.04), transparent 60%);
+      pointer-events: none;
+    }
+
+    .preregister-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.5em;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+      text-shadow: 0 0 8px rgba(0,229,255,0.5);
+    }
+
+    .preregister-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--text);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
+    }
+
+    .preregister-desc {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+      line-height: 2;
+    }
+
+    .preregister-form {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .preregister-form input[type="email"] {
+      flex: 1;
+      min-width: 240px;
+      background: rgba(8,8,26,0.8);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      padding: 0.9rem 1.2rem;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s;
+      cursor: none;
+    }
+
+    .preregister-form input[type="email"]:focus { border-color: var(--cyan); }
+    .preregister-form input[type="email"]::placeholder { color: var(--text-dim); }
+
+    .btn-register {
+      padding: 0.9rem 2rem;
+      background: var(--cyan);
+      color: var(--bg);
+      border: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      cursor: none;
+      transition: opacity 0.3s;
+      white-space: nowrap;
+    }
+
+    .btn-register:hover { opacity: 0.85; }
+    .preregister-note { margin-top: 1rem; font-size: 0.75rem; color: var(--text-dim); }
 
     /* 問い合わせ */
-    #contact {
-      background: linear-gradient(180deg, transparent, rgba(8,8,26,0.8));
-    }
+    #contact { background: linear-gradient(180deg, transparent, rgba(8,8,26,0.8)); }
 
-    .contact-inner {
-      max-width: 640px;
-    }
+    .contact-inner { max-width: 640px; }
 
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
+    .form-group { margin-bottom: 1.5rem; }
 
     .form-group label {
       display: block;
@@ -404,6 +770,8 @@
       color: var(--text-dim);
       margin-bottom: 0.5rem;
     }
+
+    .form-group label .req { color: var(--cyan); margin-left: 0.3rem; font-size: 0.7rem; }
 
     .form-group input,
     .form-group select,
@@ -417,28 +785,26 @@
       font-size: 0.9rem;
       outline: none;
       transition: border-color 0.3s;
+      cursor: none;
     }
 
     .form-group input:focus,
     .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--gold);
-    }
+    .form-group textarea:focus { border-color: var(--cyan); }
 
     .form-group select option { background: var(--bg2); }
-
     .form-group textarea { min-height: 140px; resize: vertical; }
 
     .btn-submit {
       display: inline-block;
       padding: 1rem 3rem;
       background: transparent;
-      border: 1px solid var(--gold);
-      color: var(--gold);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
       font-family: 'Orbitron', sans-serif;
       font-size: 0.75rem;
       letter-spacing: 0.2em;
-      cursor: pointer;
+      cursor: none;
       transition: all 0.3s;
       position: relative;
       overflow: hidden;
@@ -448,7 +814,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: var(--gold);
+      background: var(--cyan);
       transform: translateX(-100%);
       transition: transform 0.3s;
       z-index: -1;
@@ -456,6 +822,87 @@
 
     .btn-submit:hover { color: var(--bg); }
     .btn-submit:hover::before { transform: translateX(0); }
+    .contact-note { margin-top: 1rem; font-size: 0.78rem; color: var(--text-dim); }
+
+    /* ===== 信頼・運営者セクション ===== */
+    #trust { padding: 6rem 2rem; }
+    .trust-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+    }
+    .trust-credentials { display: flex; flex-direction: column; gap: 1.8rem; margin-top: 2rem; }
+    .trust-cred-item {
+      border-left: 2px solid var(--cyan-dim);
+      padding-left: 1.2rem;
+    }
+    .trust-cred-item .cred-label {
+      font-size: 0.70rem; letter-spacing: 0.15em; color: var(--cyan-dim);
+      text-transform: uppercase; margin-bottom: 0.4rem;
+    }
+    .trust-cred-item p { font-size: 0.88rem; color: var(--text); line-height: 1.8; }
+    .trust-pledge {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 2.8rem 2.5rem; position: relative;
+    }
+    .trust-pledge::before {
+      content: '"'; font-size: 5rem; line-height: 1; color: var(--cyan);
+      opacity: 0.15; position: absolute; top: 0.8rem; left: 1.5rem;
+      font-family: Georgia, serif;
+    }
+    .trust-pledge p { font-size: 0.95rem; line-height: 2.1; color: var(--text); padding-top: 1.8rem; }
+    .trust-pledge .pledge-sub {
+      margin-top: 1.8rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem; color: var(--text-dim); line-height: 1.8;
+    }
+
+    /* ===== 料金セクション ===== */
+    #pricing { padding: 6rem 2rem; background: linear-gradient(180deg, transparent, rgba(0,229,255,0.02), transparent); }
+    #pricing .pricing-inner { max-width: 860px; margin: 0 auto; }
+    .pricing-table { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.2rem; }
+    .pricing-row {
+      display: grid; grid-template-columns: 150px 1fr auto;
+      gap: 2rem; align-items: center;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 1.8rem 2rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .pricing-row:hover { border-color: var(--border-strong); box-shadow: 0 0 16px rgba(0,229,255,0.06); }
+    .pricing-phase {
+      font-family: 'Orbitron', monospace; font-size: 0.70rem;
+      color: var(--cyan); letter-spacing: 0.15em;
+    }
+    .pricing-phase span {
+      display: block; font-family: 'Noto Serif JP', serif;
+      font-size: 0.95rem; color: var(--text); letter-spacing: 0; margin-top: 0.4rem;
+    }
+    .pricing-desc { font-size: 0.84rem; color: var(--text-dim); line-height: 1.8; }
+    .pricing-price { text-align: right; white-space: nowrap; }
+    .pricing-price .price-main {
+      font-family: 'Orbitron', monospace; font-size: 1.05rem; color: var(--cyan);
+    }
+    .pricing-price .price-duration { font-size: 0.72rem; color: var(--text-dim); margin-top: 0.3rem; }
+    .pricing-note { margin-top: 1.8rem; font-size: 0.78rem; color: var(--text-dim); text-align: center; line-height: 1.8; }
+
+    /* ===== FAQセクション ===== */
+    #faq { padding: 6rem 2rem; }
+    #faq .faq-inner { max-width: 760px; margin: 0 auto; }
+    .faq-list { margin-top: 3rem; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: var(--text);
+      font-family: 'Noto Serif JP', serif; font-size: 0.95rem;
+      text-align: left; padding: 1.4rem 0; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .faq-q::after {
+      content: '+'; font-family: monospace; font-size: 1.4rem;
+      color: var(--cyan); flex-shrink: 0; transition: transform 0.3s;
+    }
+    .faq-item.open .faq-q::after { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a p { padding-bottom: 1.4rem; font-size: 0.87rem; color: var(--text-dim); line-height: 2; }
 
     /* フッター */
     footer {
@@ -466,60 +913,289 @@
       border-top: 1px solid var(--border);
     }
 
-    .footer-logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.2rem;
-      color: var(--gold);
-      letter-spacing: 0.2em;
-      margin-bottom: 0.5rem;
-    }
+    .footer-logo img { height: 28px; vertical-align: middle; opacity: 0.8; margin-bottom: 0.5rem; }
+    footer p { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.1em; }
 
-    footer p {
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      letter-spacing: 0.1em;
-    }
-
-    /* スクロールアニメ */
+    /* フェードイン */
     .fade-in {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== 対象エリアマップ ===== */
+    #coverage {
+      padding: 6rem 2rem;
+      background: linear-gradient(180deg, transparent, rgba(0,229,255,0.02), transparent);
     }
+
+    .coverage-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .japan-map-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .japan-map-wrap svg {
+      width: 100%;
+      max-width: 420px;
+      filter: drop-shadow(0 0 10px rgba(0,229,255,0.15));
+    }
+
+    .island {
+      fill: rgba(0,229,255,0.04);
+      stroke: rgba(0,229,255,0.28);
+      stroke-width: 1;
+      stroke-linejoin: round;
+    }
+
+    .island-small {
+      fill: rgba(0,229,255,0.03);
+      stroke: rgba(0,229,255,0.15);
+      stroke-width: 0.7;
+      stroke-linejoin: round;
+    }
+
+    @keyframes pinPulse {
+      0%   { r: 7; opacity: 0.8; }
+      100% { r: 24; opacity: 0; }
+    }
+
+    .pulse-ring {
+      fill: none;
+      stroke: var(--cyan);
+      stroke-width: 1;
+    }
+
+    .p1 { animation: pinPulse 2.2s ease-out infinite; }
+    .p2 { animation: pinPulse 2.2s ease-out infinite 0.75s; }
+    .p3 { animation: pinPulse 2.2s ease-out infinite 1.5s; }
+
+    .coverage-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .coverage-region {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      background: rgba(8,8,26,0.6);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .coverage-region:hover {
+      border-color: var(--cyan-dim);
+      box-shadow: 0 0 16px rgba(0,229,255,0.06);
+    }
+
+    .coverage-region-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      color: var(--cyan);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 6px rgba(0,229,255,0.5);
+    }
+
+    .coverage-region-desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.9;
+    }
+
+    /* ハンバーガーボタン */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 200;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--cyan);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* モバイルメニュー */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(4,4,15,0.97);
+      z-index: 150;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      color: var(--text);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      transition: color 0.3s;
+    }
+    .nav-mobile a:hover { color: var(--cyan); }
 
     /* レスポンシブ */
     @media (max-width: 768px) {
+      .coverage-inner { grid-template-columns: 1fr; }
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
+      .hamburger { display: flex; }
       section { padding: 4rem 1.5rem; }
-      .achievement-item { flex-direction: column; gap: 0.5rem; }
+      .mission-body { grid-template-columns: 1fr; }
+      .case-slide { min-width: calc(100vw - 4rem); width: calc(100vw - 4rem); padding: 2rem; }
+      .case-body { grid-template-columns: 1fr; }
+      .case-soon { min-width: 280px; width: 280px; }
+      .preregister-inner { padding: 2rem 1.5rem; }
+      body { cursor: auto; }
+      .cursor-dot, .cursor-glow { display: none; }
     }
   </style>
 </head>
 <body>
 
+  <!-- カーソル -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- 8月始動バナー -->
+  <div class="launch-banner">
+    <p>2026年8月 本格始動予定 <span>|</span> 先行登録受付中 <span>|</span> 愛媛・茨城・北海道の中小企業を対象に支援開始</p>
+  </div>
+
   <nav>
-    <div class="nav-logo">ZANITH</div>
+    <div class="nav-logo"><img src="Zanith(黒).png" alt="ZANITH" style="filter:invert(1);"></div>
     <ul class="nav-links">
+      <li><a href="#mission">思い</a></li>
+      <li><a href="#trust">運営者</a></li>
       <li><a href="#services">サービス</a></li>
-      <li><a href="#achievements">実績</a></li>
       <li><a href="#pricing">料金</a></li>
+      <li><a href="#cases">実績</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">お問い合わせ</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- モバイルメニュー -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="#mission" class="nav-mobile-link">思い</a>
+    <a href="#trust" class="nav-mobile-link">運営者</a>
+    <a href="#services" class="nav-mobile-link">サービス</a>
+    <a href="#pricing" class="nav-mobile-link">料金</a>
+    <a href="#cases" class="nav-mobile-link">実績</a>
+    <a href="#faq" class="nav-mobile-link">FAQ</a>
+    <a href="#contact" class="nav-mobile-link">お問い合わせ</a>
+  </div>
 
   <!-- ヒーロー -->
   <section id="hero">
-    <p class="hero-sub">GODO KAISHA ZANITH</p>
+    <div class="hero-region">
+      <span class="region-badge">EHIME</span>
+      <span class="region-badge">IBARAKI</span>
+      <span class="region-badge">HOKKAIDO</span>
+    </div>
+    <p class="hero-sub">ZANITH — 経営課題解決パートナー</p>
     <h1 class="hero-title">ZANITH</h1>
-    <p class="hero-kanji">頂 — 最高点へ</p>
-    <p class="hero-tagline">AIが動かす、<span>次世代の経営</span></p>
-    <a href="#contact" class="btn-primary">無料相談を申し込む</a>
+    <p class="hero-tagline" id="heroTagline"><span class="typewriter-cursor"></span></p>
+    <p class="hero-sub-tagline">提案だけして終わりではありません。<span>導入・定着まで伴走します。</span></p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">無料相談を申し込む</a>
+      <a href="#preregister" class="btn-secondary">先行登録する</a>
+    </div>
+  </section>
+
+  <!-- 思い -->
+  <section id="mission">
+    <div class="fade-in">
+      <p class="section-label">OUR MISSION</p>
+      <h2 class="section-title">思い</h2>
+    </div>
+    <div class="mission-body fade-in">
+      <div class="mission-quote">
+        ゆかりのある地域の会社の課題を解決して、<br>日本の強さを底上げしたい。<br><br>
+        大手コンサルが入らない規模の会社にこそ、本当の意味での「伴走者」が必要だと思っています。現場を理解し、御社の実情に合ったやり方を一緒に考える。それがZanithの仕事です。
+      </div>
+      <div class="mission-detail">
+        <div class="mission-item">
+          <p class="mission-item-label">WHO WE SERVE</p>
+          <p>愛媛・茨城・北海道を中心とする中小企業。経営課題を抱えながらも、どこから手をつければいいかわからずにいる会社。</p>
+        </div>
+        <div class="mission-item">
+          <p class="mission-item-label">WHAT WE DO</p>
+          <p>業務の無駄を見つけ、仕組みで解決します。特定のツールを売るのではなく、御社に最適なやり方を設計して導入まで支援します。</p>
+        </div>
+        <div class="mission-item">
+          <p class="mission-item-label">HOW WE WORK</p>
+          <p>まず現場に入り、課題の根本を把握します。その上で設計・実装・定着まで一貫して支援。改善効果が出るまで離れません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 運営者・信頼 -->
+  <section id="trust">
+    <div class="trust-inner">
+      <div class="fade-in">
+        <p class="section-label">BACKGROUND</p>
+        <h2 class="section-title">運営者について</h2>
+        <div class="trust-credentials">
+          <div class="trust-cred-item">
+            <p class="cred-label">経歴</p>
+            <p>公務員として行政業務・地域企業との連携に携わりながら、AI・デジタル活用を実務で推進してきたバックグラウンドを持つ運営者が立ち上げました。</p>
+          </div>
+          <div class="trust-cred-item">
+            <p class="cred-label">地域との接点</p>
+            <p>愛媛・茨城・北海道の3地域に、仕事・生活を通じた実際のつながりがあります。観光で訪れたのではなく、現場を知っています。</p>
+          </div>
+          <div class="trust-cred-item">
+            <p class="cred-label">現在の支援実績</p>
+            <p>愛媛県の食品・給食会社（従業員220名・42施設）に対して、業務システムの設計・開発から経営戦略の設計まで継続支援中です。</p>
+          </div>
+          <div class="trust-cred-item">
+            <p class="cred-label">匿名運営について</p>
+            <p>顔・名前は公表していません。「誰か」ではなく「何をしてきたか」で信頼を判断いただきたいためです。</p>
+          </div>
+        </div>
+      </div>
+      <div class="trust-pledge fade-in">
+        <p>改善効果が出るまで、<br>離れません。</p>
+        <div class="pledge-sub">
+          「提案書を置いて終わり」という関わり方はしません。<br>
+          現場に入り、実際に動くものを作り、使われるまで伴走する。<br>
+          それが、Zanithのやり方です。
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- サービス -->
@@ -527,106 +1203,288 @@
     <div class="fade-in">
       <p class="section-label">SERVICES</p>
       <h2 class="section-title">サービス</h2>
-      <p class="section-desc">AIエージェントによる業務自動化で、地方中小企業の競争力を変革します。</p>
+      <p class="section-desc">現場ヒアリングから始め、業務の流れを整理した上で最適な仕組みを設計・実装します。</p>
     </div>
     <div class="services-grid">
       <div class="service-card fade-in">
         <p class="service-icon">SERVICE / 01</p>
-        <h3>DX支援・AIシステム開発</h3>
-        <p>発注・在庫・シフト管理などの業務フローをAIで自動化。現場の課題から設計・実装・運用まで一貫サポート。</p>
+        <h3>業務効率化支援</h3>
+        <p>発注・在庫・シフト・請求など、手作業で行っている業務を仕組みに変えます。現場の課題を起点に設計・実装・運用まで一貫サポート。</p>
       </div>
       <div class="service-card fade-in">
         <p class="service-icon">SERVICE / 02</p>
-        <h3>SNS自動発信</h3>
-        <p>AIがコンテンツを生成・スケジュール・投稿。人手ゼロでブランディングと集客を継続する仕組みを構築します。</p>
+        <h3>情報発信支援</h3>
+        <p>SNS・HP・コンテンツの発信体制を整えます。人手をかけずに継続できる仕組みを構築し、ブランディングと集客をサポートします。</p>
       </div>
       <div class="service-card fade-in">
         <p class="service-icon">SERVICE / 03</p>
-        <h3>給食管理SaaS</h3>
-        <p>介護施設・保育施設向けの給食発注・献立・在庫管理システム。クラウドで複数施設を一元管理できます。</p>
+        <h3>経営課題の整理・設計</h3>
+        <p>「何が問題かわからない」状態から整理します。現状分析・優先順位付け・改善ロードマップの設計を行い、次の一手を明確にします。</p>
       </div>
     </div>
   </section>
 
-  <!-- 実績 -->
-  <section id="achievements">
-    <div class="fade-in">
-      <p class="section-label">ACHIEVEMENTS</p>
-      <h2 class="section-title">実績</h2>
-      <p class="section-desc">小さく始め、確実に動くシステムを届けることを信条としています。</p>
+  <!-- 対象エリアマップ -->
+  <section id="coverage">
+    <div class="coverage-inner">
+      <div class="japan-map-wrap fade-in">
+        <!-- 座標系: X=(経度-129)*28, Y=(46-緯度)*28 / Natural Earth 50m -->
+        <svg viewBox="0 0 545 445" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="islandGlow" x="-5%" y="-5%" width="110%" height="110%">
+              <feGaussianBlur stdDeviation="1.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="pinGlow" x="-120%" y="-120%" width="340%" height="340%">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- 本州 (Natural Earth 50m / 88pts) -->
+          <path class="island" d="M 334.2,125.8 L 348.8,128.7 L 348.1,147.7 L 358.3,159.8 L 363.7,173.8 L 363.4,184.0 L 361.2,192.9 L 351.3,202.6 L 349.1,212.7 L 339.0,214.5 L 334.9,219.8 L 336.0,248.8 L 324.1,273.5 L 332.5,287.7 L 320.8,293.7 L 317.9,302.9 L 303.6,310.4 L 303.1,299.7 L 310.7,291.6 L 303.4,289.6 L 298.2,296.5 L 298.9,303.8 L 293.3,299.6 L 287.0,300.2 L 282.4,312.5 L 275.5,318.7 L 274.5,308.7 L 277.3,307.3 L 272.1,304.5 L 257.3,319.3 L 225.7,319.7 L 231.7,314.4 L 223.0,312.6 L 220.4,315.5 L 221.1,307.0 L 218.5,306.6 L 210.9,317.0 L 220.6,323.9 L 219.9,326.9 L 205.2,331.0 L 193.7,348.3 L 187.5,350.4 L 180.7,348.5 L 171.6,335.8 L 170.8,327.9 L 179.6,318.7 L 160.7,314.6 L 146.9,316.0 L 116.0,327.5 L 92.8,326.9 L 88.1,340.5 L 76.7,334.5 L 53.7,336.7 L 52.9,328.7 L 56.1,325.0 L 65.9,324.4 L 109.8,293.7 L 139.5,293.8 L 172.9,287.1 L 177.2,293.3 L 193.3,291.0 L 198.7,286.5 L 197.9,276.7 L 215.5,259.2 L 216.1,246.4 L 219.6,241.3 L 233.0,237.4 L 221.2,248.7 L 224.5,256.6 L 230.9,258.9 L 261.0,245.9 L 276.8,228.4 L 290.2,221.2 L 302.5,199.3 L 309.8,178.5 L 307.9,172.1 L 300.8,170.2 L 308.3,160.7 L 307.1,149.2 L 315.9,144.3 L 318.8,133.6 L 325.6,134.5 L 329.0,144.8 L 334.2,141.7 L 339.3,143.3 L 342.8,134.2 L 330.4,136.1 L 330.5,132.9 Z" filter="url(#islandGlow)"/>
+
+          <!-- 北海道 (Natural Earth 50m / 35pts) -->
+          <path class="island" d="M 415.1,52.7 L 440.0,58.0 L 458.3,46.8 L 451.5,59.7 L 451.9,65.5 L 457.5,75.5 L 471.3,73.2 L 445.8,84.0 L 419.1,87.3 L 404.0,100.3 L 398.6,112.0 L 359.8,95.8 L 347.4,96.7 L 335.6,102.4 L 327.9,96.4 L 321.5,96.3 L 317.1,103.8 L 340.2,117.5 L 326.5,117.2 L 315.6,127.2 L 309.0,126.7 L 311.0,114.4 L 303.4,104.2 L 304.1,95.7 L 320.1,85.3 L 319.0,75.5 L 339.9,79.0 L 346.5,76.2 L 347.1,66.0 L 357.3,42.5 L 357.9,35.9 L 352.3,23.6 L 354.7,16.8 L 362.3,13.7 L 388.8,37.2 Z" filter="url(#islandGlow)"/>
+
+          <!-- 九州 (Natural Earth 50m / 35pts) -->
+          <path class="island" d="M 60.9,347.1 L 75.5,347.1 L 71.0,356.3 L 81.1,356.9 L 79.7,360.7 L 84.1,367.3 L 74.5,379.0 L 65.4,408.7 L 58.0,407.8 L 58.8,412.8 L 47.2,419.6 L 49.7,400.2 L 43.6,404.2 L 44.5,415.0 L 32.1,408.6 L 36.2,407.4 L 37.0,403.2 L 33.3,398.5 L 33.4,389.5 L 45.9,374.7 L 41.9,373.6 L 43.3,368.7 L 34.7,359.0 L 31.6,361.1 L 32.9,368.2 L 37.1,368.1 L 37.5,372.3 L 29.5,370.4 L 21.5,376.0 L 23.1,371.7 L 19.0,362.3 L 27.8,368.2 L 16.2,357.4 L 48.0,338.0 L 54.7,339.6 Z" filter="url(#islandGlow)"/>
+
+          <!-- 四国 (Natural Earth 50m / 19pts) -->
+          <path class="island" d="M 138.6,326.3 L 157.9,329.7 L 160.7,341.0 L 150.6,347.0 L 145.1,357.1 L 138.8,351.4 L 129.7,349.7 L 120.0,353.9 L 106.5,370.9 L 102.0,370.7 L 103.9,366.7 L 97.9,366.3 L 95.6,351.9 L 84.9,354.5 L 102.0,344.7 L 110.2,333.3 L 117.4,337.9 L 128.3,335.5 L 128.9,329.2 Z" filter="url(#islandGlow)"/>
+
+          <!-- 佐渡 -->
+          <path class="island-small" d="M 268.1,222.2 L 258.3,228.8 L 261.0,224.9 L 259.0,221.8 L 266.1,215.2 L 264.7,221.9 Z" filter="url(#islandGlow)"/>
+
+          <!-- 沖縄インセット枠 -->
+          <rect x="468" y="370" width="52" height="56" rx="2"
+                fill="rgba(4,4,15,0.7)" stroke="rgba(0,229,255,0.25)" stroke-width="0.8" stroke-dasharray="3,2"/>
+          <text x="471" y="379" font-family="sans-serif" font-size="6.5" fill="#8888aa" letter-spacing="0.5">沖縄</text>
+          <!-- 沖縄本島 (Natural Earth 50m / 20pts) -->
+          <path class="island-small" d="M 507.9,392.4 L 492.6,402.2 L 488.4,402.9 L 490.2,408.6 L 487.4,409.1 L 484.5,412.2 L 485.2,417.4 L 481.5,420.1 L 477.7,420.3 L 477.7,415.0 L 481.4,409.6 L 481.4,403.3 L 486.0,401.7 L 492.3,395.3 L 489.5,393.4 L 490.4,390.3 L 497.3,392.8 L 499.9,391.6 L 507.7,380.9 L 511.6,384.4 Z" filter="url(#islandGlow)"/>
+
+          <!-- コネクター -->
+          <line x1="390" y1="70"  x2="418" y2="48"  stroke="rgba(0,229,255,0.4)" stroke-width="0.8" stroke-dasharray="3,3"/>
+          <line x1="316" y1="272" x2="394" y2="266"  stroke="rgba(0,229,255,0.4)" stroke-width="0.8" stroke-dasharray="3,3"/>
+          <line x1="112" y1="348" x2="42"  y2="382"  stroke="rgba(0,229,255,0.4)" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+          <!-- ピン: 北海道 -->
+          <g id="pin-hokkaido">
+            <circle class="pulse-ring pin-ring p1" cx="390" cy="70" r="7"/>
+            <circle class="pin-dot" cx="390" cy="70" r="5" fill="var(--cyan)" filter="url(#pinGlow)" opacity="0.9"/>
+            <circle cx="390" cy="70" r="2.5" fill="white"/>
+          </g>
+
+          <!-- ピン: 茨城 -->
+          <g id="pin-ibaraki">
+            <circle class="pulse-ring pin-ring p2" cx="316" cy="272" r="7"/>
+            <circle class="pin-dot" cx="316" cy="272" r="5" fill="var(--cyan)" filter="url(#pinGlow)" opacity="0.9"/>
+            <circle cx="316" cy="272" r="2.5" fill="white"/>
+          </g>
+
+          <!-- ピン: 愛媛 -->
+          <g id="pin-ehime">
+            <circle class="pulse-ring pin-ring p3" cx="112" cy="348" r="7"/>
+            <circle class="pin-dot" cx="112" cy="348" r="5" fill="var(--cyan)" filter="url(#pinGlow)" opacity="0.9"/>
+            <circle cx="112" cy="348" r="2.5" fill="white"/>
+          </g>
+
+          <!-- ラベル: 北海道 -->
+          <g id="label-hokkaido">
+            <text x="421" y="44" font-family="Orbitron,monospace" font-size="9" fill="var(--cyan)" letter-spacing="2">HOKKAIDO</text>
+            <text x="421" y="56" font-family="sans-serif" font-size="8" fill="#8888aa">北海道</text>
+          </g>
+
+          <!-- ラベル: 茨城 -->
+          <g id="label-ibaraki">
+            <text x="397" y="262" font-family="Orbitron,monospace" font-size="9" fill="var(--cyan)" letter-spacing="2">IBARAKI</text>
+            <text x="397" y="274" font-family="sans-serif" font-size="8" fill="#8888aa">茨城県</text>
+          </g>
+
+          <!-- ラベル: 愛媛 -->
+          <g id="label-ehime">
+            <text x="5" y="378" font-family="Orbitron,monospace" font-size="9" fill="var(--cyan)" letter-spacing="2">EHIME</text>
+            <text x="5" y="390" font-family="sans-serif" font-size="8" fill="#8888aa">愛媛県</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="coverage-text fade-in">
+        <div>
+          <p class="section-label">COVERAGE AREA</p>
+          <h2 class="section-title">対象エリア</h2>
+          <p class="section-desc">ゆかりのある3つの地域を対象に、現場に入った支援を行います。</p>
+        </div>
+        <div class="coverage-region">
+          <p class="coverage-region-name">HOKKAIDO — 北海道</p>
+          <p class="coverage-region-desc">一次産業・食品加工・観光・医療が集積する広大な地域。物流コストや在庫管理、人材定着の課題が業種を問わず深刻です。</p>
+        </div>
+        <div class="coverage-region">
+          <p class="coverage-region-name">IBARAKI — 茨城県</p>
+          <p class="coverage-region-desc">製造業・農業・研究機関が混在する産業県。大手の下請け構造も多く、請求・発注・在庫の非効率が現場に積み重なっています。</p>
+        </div>
+        <div class="coverage-region">
+          <p class="coverage-region-name">EHIME — 愛媛県</p>
+          <p class="coverage-region-desc">食品・給食・介護・福祉の現場を直接支援してきた実績があります。宇和島・松山を中心に、現場のリアルを知っています。</p>
+        </div>
+      </div>
     </div>
-    <div class="achievements-list fade-in">
-      <div class="achievement-item">
-        <div class="achievement-num">01</div>
-        <div class="achievement-content">
-          <h3>介護施設向け給食管理システム <span class="badge">LIVE</span></h3>
-          <p>5施設・365日3食対応。献立・発注・在庫管理をクラウドで一元化。Renderにて本番稼働中。</p>
+  </section>
+
+  <!-- 事例スライダー -->
+  <section id="cases" style="max-width:100%; padding:6rem 0; overflow:hidden; background: linear-gradient(180deg, transparent, rgba(8,8,26,0.8), transparent);">
+    <div class="cases-header fade-in" style="max-width:1100px; margin:0 auto 3rem; padding:0 2rem;">
+      <p class="section-label">CASE STUDIES</p>
+      <h2 class="section-title">実績・事例</h2>
+      <p class="section-desc">小さく始め、確実に動くものを届けることを信条としています。</p>
+    </div>
+    <div class="slider-outer fade-in">
+      <div class="slider-track-wrap">
+        <div class="slider-track" id="sliderTrack" style="padding-left: max(2rem, calc((100vw - 1100px)/2));">
+
+          <!-- CASE 01 -->
+          <div class="case-slide active">
+            <p class="case-num">CASE / 01</p>
+            <div class="case-client">
+              愛媛県 / 食品・給食会社 / 従業員220名
+              <span class="case-badge">LIVE</span>
+              <span class="case-badge progress">IN PROGRESS</span>
+            </div>
+            <div class="case-body">
+              <div class="case-block">
+                <p class="case-block-label">CHALLENGE — 課題</p>
+                <ul>
+                  <li>FAX・電話で14社へ毎日発注、ミスが発生</li>
+                  <li>発注漏れによる入居者へのクレーム</li>
+                  <li>複数拠点の献立・在庫をExcelで個別管理</li>
+                  <li>担当者交代のタイミングでノウハウが断絶</li>
+                </ul>
+              </div>
+              <div class="case-block">
+                <p class="case-block-label">SOLUTION — 対応</p>
+                <ul>
+                  <li>給食管理システムをゼロから設計・開発</li>
+                  <li>献立・発注・在庫を一元管理するクラウド化</li>
+                  <li>複数拠点（宇和島・別府）のマルチキッチン対応</li>
+                  <li>財務3期分析・経営戦略ロードマップ策定</li>
+                </ul>
+              </div>
+            </div>
+            <div class="case-stats">
+              <div class="stat-item">
+                <div class="stat-num"><span class="counter" data-target="14">0</span><span class="stat-unit">社</span></div>
+                <div class="stat-label">連携業者数</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num"><span class="counter" data-target="42">0</span><span class="stat-unit">施設</span></div>
+                <div class="stat-label">管理対象施設</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num"><span class="counter" data-target="3">0</span><span class="stat-unit">期</span></div>
+                <div class="stat-label">財務分析済み</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CASE 02 coming soon -->
+          <div class="case-soon">
+            <p class="case-soon-label">CASE / 02 — COMING SOON</p>
+            <p>次の事例は2026年8月以降に公開予定です。<br>先行登録でいち早くお知らせします。</p>
+          </div>
+
         </div>
       </div>
-      <div class="achievement-item">
-        <div class="achievement-num">02</div>
-        <div class="achievement-content">
-          <h3>LINE AIエージェント開発 <span class="badge">LIVE</span></h3>
-          <p>Claude APIを活用したタスク管理・ニュース要約・X自動投稿機能を持つ経営支援エージェント。</p>
-        </div>
-      </div>
-      <div class="achievement-item">
-        <div class="achievement-num">03</div>
-        <div class="achievement-content">
-          <h3>発注自動化システム（Phase1）<span class="badge">IN PROGRESS</span></h3>
-          <p>給食会社の食材発注業務を完全自動化。ヒアリング〜設計フェーズ進行中。</p>
-        </div>
+      <div class="slider-controls">
+        <button class="slider-btn" id="prevBtn">&#8592;</button>
+        <div class="slider-dots" id="sliderDots"></div>
+        <button class="slider-btn" id="nextBtn">&#8594;</button>
       </div>
     </div>
   </section>
 
   <!-- 料金 -->
   <section id="pricing">
-    <div class="fade-in">
+    <div class="pricing-inner fade-in">
       <p class="section-label">PRICING</p>
-      <h2 class="section-title">料金プラン</h2>
-      <p class="section-desc">すべてのプランに初回ヒアリング・要件定義が含まれます。契約は月単位、いつでも解約可能です。</p>
+      <h2 class="section-title">料金の目安</h2>
+      <p class="section-desc">課題の規模・内容によって変動しますが、参考としてご覧ください。</p>
+      <div class="pricing-table">
+        <div class="pricing-row">
+          <div class="pricing-phase">PHASE 0<span>現状把握・課題整理</span></div>
+          <p class="pricing-desc">現場に入り、業務フローと課題の優先順位を整理します。何から始めるべきかを明確にするフェーズです。</p>
+          <div class="pricing-price">
+            <p class="price-main">月10万円〜</p>
+            <p class="price-duration">1〜2ヶ月</p>
+          </div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-phase">PHASE 1<span>仕組みの設計・導入</span></div>
+          <p class="pricing-desc">合意した課題から着手。システム設計・実装・運用開始まで一貫して支援します。</p>
+          <div class="pricing-price">
+            <p class="price-main">月15〜20万円</p>
+            <p class="price-duration">3〜6ヶ月</p>
+          </div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-phase">PHASE 2<span>定着・拡張支援</span></div>
+          <p class="pricing-desc">効果測定・改善・範囲拡大を継続的にサポートします。成果が出るまで離れません。</p>
+          <div class="pricing-price">
+            <p class="price-main">月20〜30万円</p>
+            <p class="price-duration">継続</p>
+          </div>
+        </div>
+      </div>
+      <p class="pricing-note">※上記はあくまで目安です。規模・内容によって変動します。まずは現状をお聞かせください。<strong style="color:var(--text);">初回相談は無料</strong>です。</p>
     </div>
-    <div class="pricing-grid fade-in">
-      <div class="pricing-card">
-        <p class="pricing-plan">LIGHT</p>
-        <div class="pricing-price">3<span>万円 / 月</span></div>
-        <p class="pricing-init">初期費用：3万円〜</p>
-        <ul class="pricing-features">
-          <li>SNS自動発信（月20投稿）</li>
-          <li>AIニュースダイジェスト</li>
-          <li>メールサポート</li>
-        </ul>
-        <a href="#contact" class="btn-outline">相談する</a>
-      </div>
-      <div class="pricing-card featured">
-        <p class="pricing-plan">STANDARD</p>
-        <div class="pricing-price">8<span>万円 / 月</span></div>
-        <p class="pricing-init">初期費用：10万円〜</p>
-        <ul class="pricing-features">
-          <li>業務自動化システム開発</li>
-          <li>SNS自動発信</li>
-          <li>AIエージェント導入</li>
-          <li>月次レポート</li>
-          <li>チャット・電話サポート</li>
-        </ul>
-        <a href="#contact" class="btn-outline">相談する</a>
-      </div>
-      <div class="pricing-card">
-        <p class="pricing-plan">PREMIUM</p>
-        <div class="pricing-price">15<span>万円 / 月</span></div>
-        <p class="pricing-init">初期費用：別途お見積り</p>
-        <ul class="pricing-features">
-          <li>フルスタックDX支援</li>
-          <li>複数システム統合</li>
-          <li>専任エージェント割り当て</li>
-          <li>週次ミーティング</li>
-          <li>優先対応・24hサポート</li>
-        </ul>
-        <a href="#contact" class="btn-outline">相談する</a>
+  </section>
+
+  <!-- 先行登録 -->
+  <section id="preregister">
+    <div class="fade-in">
+      <div class="preregister-inner">
+        <p class="preregister-label">COMING SOON — 2026.08</p>
+        <h2 class="preregister-title">先行登録で、準備が整い次第ご連絡します</h2>
+        <p class="preregister-desc">
+          Zanithは2026年8月に本格始動します。<br>
+          先行登録いただいた方には、サービス開始のご案内・初回相談の優先案内をお届けします。
+        </p>
+        <form class="preregister-form" action="https://formspree.io/f/YOUR_PREREGISTER_FORM_ID" method="POST">
+          <input type="email" name="email" placeholder="メールアドレスを入力" required>
+          <button type="submit" class="btn-register">登録する</button>
+        </form>
+        <p class="preregister-note">登録情報はZanithからのご案内にのみ使用します。</p>
       </div>
     </div>
-    <p style="margin-top:1.5rem; font-size:0.8rem; color:var(--text-dim);">※ 給食管理SaaSは別途お見積り。小規模事業者向け割引あり。</p>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="faq-inner fade-in">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">よくある質問</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">どんな企業が相談できますか？</button>
+          <div class="faq-a"><p>愛媛・茨城・北海道に拠点を持つ中小企業を主な対象としています。業種は問いません。「何から手をつければいいかわからない」という状態からでも対応できます。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">AIやDXの知識がなくても大丈夫ですか？</button>
+          <div class="faq-a"><p>はい。特定のツールを売るのではなく、御社の現状に合った方法を一緒に考えます。「まず何が問題か」の整理から始めますので、専門知識は不要です。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">費用はどのくらいかかりますか？</button>
+          <div class="faq-a"><p>まず現状を把握するフェーズ（PHASE 0）は月10万円〜が目安です。その後の支援規模・内容によって変動します。初回相談は無料ですので、まずはご連絡ください。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">今すぐ相談できますか？</button>
+          <div class="faq-a"><p>お問い合わせはいつでも受け付けています。現在は2026年8月の本格始動に向けた準備期間中のため、ご返信まで3〜5営業日いただく場合があります。先行登録いただいた方には本格始動時に優先してご案内します。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">運営者の情報が公開されていないのはなぜですか？</button>
+          <div class="faq-a"><p>「誰か」ではなく「何をしてきたか」で信頼を判断していただきたいためです。現在も継続中の支援実績と、お問い合わせ後の対話を通じてご判断いただければと思います。</p></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- 問い合わせ -->
@@ -634,37 +1492,211 @@
     <div class="fade-in contact-inner">
       <p class="section-label">CONTACT</p>
       <h2 class="section-title">お問い合わせ</h2>
-      <p class="section-desc">まずは無料相談から。現状の課題をお聞かせください。</p>
-      <div style="border: 1px solid var(--border); padding: 2.5rem; background: rgba(8,8,26,0.6); margin-bottom: 2rem;">
-        <p style="font-size:0.9rem; color:var(--text-dim); line-height:2.2; margin-bottom:1.5rem;">
-          下記ボタンよりメールにてご連絡ください。<br>
-          会社名・お名前・ご興味のあるサービス・現状の課題を添えてご送信いただくと、よりスムーズにご対応できます。<br>
-          <span style="color:var(--cyan); font-size:0.8rem;">通常2営業日以内にご返信いたします。</span>
-        </p>
-        <a href="mailto:info@zanith.jp?subject=Zanithへのお問い合わせ&body=【会社名・屋号】%0A%0A【お名前】%0A%0A【ご興味のあるサービス】%0ADX支援・AIシステム開発 / SNS自動発信 / 給食管理SaaS / その他%0A%0A【現在の課題・ご相談内容】%0A" class="btn-submit" style="display:inline-block; text-decoration:none;">
-          メールで相談する
-        </a>
-      </div>
-      <p style="font-size:0.75rem; color:var(--text-dim);">連絡先：<span style="color:var(--gold);">info@zanith.jp</span></p>
+      <p class="section-desc">まずは現状の課題をお聞かせください。<br><small style="color:var(--text-dim);font-size:0.8rem;">※現在は準備期間中のため、ご返信まで3〜5営業日いただく場合があります。2026年8月の本格始動後はより迅速に対応いたします。</small></p>
+      <form action="https://formspree.io/f/YOUR_CONTACT_FORM_ID" method="POST">
+        <div class="form-group">
+          <label>会社名・屋号<span class="req">*</span></label>
+          <input type="text" name="company" required>
+        </div>
+        <div class="form-group">
+          <label>お名前<span class="req">*</span></label>
+          <input type="text" name="name" required>
+        </div>
+        <div class="form-group">
+          <label>メールアドレス<span class="req">*</span></label>
+          <input type="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label>所在地域</label>
+          <select name="region">
+            <option value="">選択してください</option>
+            <option value="ehime">愛媛県</option>
+            <option value="ibaraki">茨城県</option>
+            <option value="hokkaido">北海道</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>現在の課題・ご相談内容<span class="req">*</span></label>
+          <textarea name="message" placeholder="どんな小さなことでも構いません。現状困っていることをそのままお書きください。" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">送信する</button>
+        <p class="contact-note">お問い合わせ先：<span style="color:var(--cyan);">info@zanith.jp</span></p>
+      </form>
     </div>
   </section>
 
   <footer>
-    <div class="footer-logo">ZANITH</div>
-    <p>&copy; 2026 合同会社Zanith. All rights reserved.</p>
+    <div class="footer-logo"><img src="Zanith(黒).png" alt="ZANITH" style="filter:invert(1);"></div>
+    <p style="margin-bottom:0.4rem;">&copy; 2026 Zanith. All rights reserved.</p>
+    <p>info@zanith.jp</p>
   </footer>
 
   <script>
-    // スクロールアニメ
-    const observer = new IntersectionObserver((entries) => {
+    // ===== カーソル =====
+    const dot = document.getElementById('cursorDot');
+    const glow = document.getElementById('cursorGlow');
+    let mouseX = 0, mouseY = 0;
+    let glowX = 0, glowY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top  = mouseY + 'px';
+    });
+
+    // グローは少し遅延して追う
+    function animateGlow() {
+      glowX += (mouseX - glowX) * 0.08;
+      glowY += (mouseY - glowY) * 0.08;
+      glow.style.left = glowX + 'px';
+      glow.style.top  = glowY + 'px';
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+
+    // ===== タイプライター =====
+    function typeWriter(text, speed = 70) {
+      const el = document.getElementById('heroTagline');
+      el.innerHTML = '<span class="typewriter-cursor"></span>';
+      let i = 0;
+      function next() {
+        if (i < text.length) {
+          el.innerHTML = text.slice(0, ++i) + '<span class="typewriter-cursor"></span>';
+          setTimeout(next, speed);
+        }
+      }
+      setTimeout(next, 800);
+    }
+    typeWriter('御社に合った課題解決を、一緒に設計します。');
+
+    // ===== フェードイン =====
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+    // ===== カウンターアニメ =====
+    function animateCounter(el, target, duration = 1200) {
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = Math.floor(current);
+      }, 16);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          e.target.classList.add('visible');
+          e.target.querySelectorAll('.counter').forEach(counter => {
+            animateCounter(counter, parseInt(counter.dataset.target));
+          });
+          counterObserver.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.3 });
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.case-slide').forEach(slide => counterObserver.observe(slide));
+
+    // ===== 地図ラベルホバー→ピングリッチ =====
+    const mapPins = {
+      'label-hokkaido': 'pin-hokkaido',
+      'label-ibaraki':  'pin-ibaraki',
+      'label-ehime':    'pin-ehime',
+    };
+
+    function pinGlitch(groupEl) {
+      const dot = groupEl.querySelector('.pin-dot');
+      const rings = groupEl.querySelectorAll('.pin-ring');
+      if (!dot) return;
+      let t = 0;
+      const frames = [
+        () => { dot.setAttribute('transform','translate(-3,1)');  dot.setAttribute('opacity','0.5'); },
+        () => { dot.setAttribute('transform','translate(3,-2)');  dot.setAttribute('opacity','1'); },
+        () => { dot.setAttribute('transform','translate(-2,2)');  dot.setAttribute('opacity','0.7'); rings.forEach(r=>r.setAttribute('stroke','#ff00ff')); },
+        () => { dot.setAttribute('transform','translate(2,-1)');  dot.setAttribute('opacity','1'); rings.forEach(r=>r.setAttribute('stroke','var(--cyan)')); },
+        () => { dot.setAttribute('transform','translate(-1,1)');  dot.setAttribute('opacity','0.8'); },
+        () => { dot.setAttribute('transform','translate(0,0)');   dot.setAttribute('opacity','0.9'); },
+      ];
+      const run = () => {
+        if (t < frames.length) { frames[t](); t++; setTimeout(run, 45); }
+        else { dot.removeAttribute('transform'); dot.setAttribute('opacity','0.9'); rings.forEach(r=>r.setAttribute('stroke','var(--cyan)')); }
+      };
+      run();
+    }
+
+    Object.entries(mapPins).forEach(([labelId, pinId]) => {
+      const label = document.getElementById(labelId);
+      const pin   = document.getElementById(pinId);
+      if (label && pin) {
+        label.style.cursor = 'none';
+        label.addEventListener('mouseenter', () => pinGlitch(pin));
+      }
+    });
+
+    // ===== スライダー =====
+    const track = document.getElementById('sliderTrack');
+    const slides = document.querySelectorAll('.case-slide, .case-soon');
+    const dotsContainer = document.getElementById('sliderDots');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let current = 0;
+
+    // ドット生成
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    function goTo(index) {
+      slides.forEach(s => s.classList.remove('active'));
+      current = Math.max(0, Math.min(index, slides.length - 1));
+      slides[current].classList.add('active');
+
+      const slideWidth = slides[0].offsetWidth + 48; // margin含む
+      track.style.transform = `translateX(-${current * slideWidth}px)`;
+
+      dotsContainer.querySelectorAll('.dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === slides.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+    goTo(0);
+
+    // ===== ハンバーガーメニュー =====
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('navMobile');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navMobile.classList.toggle('open');
+      document.body.style.overflow = navMobile.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.nav-mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navMobile.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ===== FAQアコーディオン =====
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
   </script>
 </body>
 </html>
