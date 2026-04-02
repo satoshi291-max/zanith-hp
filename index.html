@@ -1068,12 +1068,50 @@
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      section { padding: 4rem 1.5rem; }
-      .mission-body { grid-template-columns: 1fr; }
-      .case-slide { min-width: calc(100vw - 4rem); width: calc(100vw - 4rem); padding: 2rem; }
-      .case-body { grid-template-columns: 1fr; }
+      section { padding: 3rem 1.2rem; }
+      #trust { padding: 3rem 1.2rem; }
+      #pricing { padding: 3rem 1.2rem; }
+      #faq { padding: 3rem 1.2rem; }
+      #cases { padding: 3rem 0; }
+
+      /* ヒーロー */
+      #hero { padding: 2.5rem 1.2rem; }
+      .hero-sub { font-size: 0.68rem; letter-spacing: 0.2em; }
+      .hero-sub-tagline { font-size: 0.82rem; }
+      .hero-btns { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-secondary { width: 100%; max-width: 280px; text-align: center; }
+
+      /* バナー */
+      .launch-banner p { font-size: 0.6rem; letter-spacing: 0.1em; }
+      .launch-banner span { margin: 0 0.5rem; }
+
+      /* ミッション */
+      .mission-body { grid-template-columns: 1fr; gap: 1.5rem; }
+      .mission-quote { font-size: 0.92rem; padding: 1.5rem; line-height: 2; }
+
+      /* 信頼・運営者 */
+      .trust-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .trust-pledge { padding: 2rem 1.5rem; }
+
+      /* 料金 */
+      .pricing-row {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        padding: 1.4rem 1.2rem;
+      }
+      .pricing-price { text-align: left; }
+
+      /* 事例スライダー */
+      .case-slide { min-width: calc(100vw - 4rem); width: calc(100vw - 4rem); padding: 1.5rem; }
+      .case-body { grid-template-columns: 1fr; gap: 1.2rem; }
       .case-soon { min-width: 280px; width: 280px; }
-      .preregister-inner { padding: 2rem 1.5rem; }
+
+      /* 先行登録 */
+      .preregister-inner { padding: 2rem 1.2rem; }
+      .preregister-form { flex-direction: column; align-items: stretch; }
+      .preregister-form input[type="email"] { min-width: unset; width: 100%; }
+      .btn-register { width: 100%; }
+
       body { cursor: auto; }
       .cursor-dot, .cursor-glow { display: none; }
     }
