@@ -53,7 +53,7 @@
       {
         "@type": "Question",
         "name": "Zanithの費用・料金はいくらですか？",
-        "acceptedAnswer": { "@type": "Answer", "text": "現状把握フェーズ（PHASE 0）は月10万円〜が目安です。支援規模・内容によって変動します。初回相談は無料です。" }
+        "acceptedAnswer": { "@type": "Answer", "text": "現状把握フェーズ（PHASE 1）は月5〜8万円が目安です。支援規模・内容によって変動します。初回相談は無料です。" }
       },
       {
         "@type": "Question",
@@ -92,6 +92,161 @@
       cursor: none;
     }
 
+    /* ======= イントロオーバーレイ ======= */
+    #introOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease;
+    }
+    #introOverlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* 動画 */
+    #introVideo {
+      width: min(680px, 85vw);
+      height: auto;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ホログラムコーナーブラケット */
+    .intro-corner {
+      position: absolute;
+      width: 48px; height: 48px;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .intro-corner::before,
+    .intro-corner::after {
+      content: '';
+      position: absolute;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan), 0 0 20px rgba(0,229,255,0.4);
+    }
+    .intro-corner::before { width: 100%; height: 2px; top: 0; left: 0; }
+    .intro-corner::after  { width: 2px; height: 100%; top: 0; left: 0; }
+    .intro-corner.tr::before { left: auto; right: 0; }
+    .intro-corner.tr::after  { left: auto; right: 0; }
+    .intro-corner.bl::before { top: auto; bottom: 0; }
+    .intro-corner.bl::after  { top: auto; bottom: 0; }
+    .intro-corner.br::before { top: auto; bottom: 0; left: auto; right: 0; }
+    .intro-corner.br::after  { top: auto; bottom: 0; left: auto; right: 0; }
+    .intro-corner.tl { top: 32px; left: 32px; }
+    .intro-corner.tr { top: 32px; right: 32px; }
+    .intro-corner.bl { bottom: 32px; left: 32px; }
+    .intro-corner.br { bottom: 32px; right: 32px; }
+
+    /* スキャンライン */
+    .intro-scanline {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.18) 3px,
+        rgba(0,0,0,0.18) 4px
+      );
+    }
+
+    /* ノイズグリッチ */
+    .intro-noise {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      animation: noise-shift 0.12s steps(1) infinite;
+    }
+    @keyframes noise-shift {
+      0%  { background-position: 0 0; }
+      25% { background-position: -30px 20px; }
+      50% { background-position: 15px -10px; }
+      75% { background-position: -20px 30px; }
+    }
+
+    /* HUDテキスト */
+    .intro-hud-top {
+      position: absolute;
+      top: 40px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      color: var(--cyan);
+      opacity: 0.7;
+      animation: hud-pulse 2s ease-in-out infinite;
+    }
+    .intro-hud-bottom {
+      position: absolute;
+      bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: var(--cyan);
+      opacity: 0.6;
+      white-space: nowrap;
+    }
+    @keyframes hud-pulse {
+      0%, 100% { opacity: 0.7; }
+      50%       { opacity: 0.35; }
+    }
+
+    /* SKIPボタン */
+    #introSkip {
+      position: absolute;
+      bottom: 36px; right: 48px;
+      z-index: 5;
+      background: transparent;
+      border: 1px solid rgba(0,229,255,0.4);
+      color: rgba(0,229,255,0.6);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    #introSkip:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 12px rgba(0,229,255,0.3);
+    }
+
+    /* 水平グリッチライン（時々走る） */
+    #introOverlay::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 2px;
+      background: rgba(0,229,255,0.6);
+      z-index: 3;
+      pointer-events: none;
+      animation: glitch-line 4s ease-in-out infinite;
+    }
+    @keyframes glitch-line {
+      0%, 90%, 100% { opacity: 0; top: 50%; }
+      92% { opacity: 1; top: 30%; }
+      94% { opacity: 0.5; top: 65%; }
+      96% { opacity: 1; top: 45%; }
+      98% { opacity: 0; }
+    }
+
     /* カーソルグロー */
     .cursor-dot {
       position: fixed;
@@ -114,6 +269,24 @@
       z-index: 9998;
       transform: translate(-50%, -50%);
       transition: left 0.15s ease, top 0.15s ease;
+    }
+
+    /* カーソル火花（びりびり） */
+    .cursor-spark {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9997;
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 4px var(--cyan), 0 0 8px var(--cyan);
+      transform: translate(-50%, -50%);
+      animation: spark-fly 0.45s ease-out forwards;
+    }
+    .cursor-spark.warm { background: #ff6b35; box-shadow: 0 0 4px #ff6b35, 0 0 8px #ff6b35; }
+    @keyframes spark-fly {
+      0%   { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+      100% { opacity: 0; transform: translate(calc(-50% + var(--sx)), calc(-50% + var(--sy))) scale(0); }
     }
 
     /* グリッド背景 */
@@ -219,6 +392,34 @@
       letter-spacing: 0.4em;
       color: var(--text-dim);
       margin-bottom: 1.5rem;
+    }
+
+    .hero-video-wrap {
+      width: min(420px, 72vw);
+      margin-bottom: 1.8rem;
+      position: relative;
+    }
+    .hero-video-wrap::before,
+    .hero-video-wrap::after {
+      content: '';
+      position: absolute;
+      width: 18px; height: 18px;
+      border-color: var(--cyan);
+      border-style: solid;
+      opacity: 0.7;
+    }
+    .hero-video-wrap::before {
+      top: -6px; left: -6px;
+      border-width: 2px 0 0 2px;
+    }
+    .hero-video-wrap::after {
+      bottom: -6px; right: -6px;
+      border-width: 0 2px 2px 0;
+    }
+    .hero-video-wrap video {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     .hero-title {
@@ -1081,6 +1282,24 @@
 </head>
 <body>
 
+  <!-- ======= イントロオーバーレイ ======= -->
+  <div id="introOverlay">
+    <div class="intro-corner tl"></div>
+    <div class="intro-corner tr"></div>
+    <div class="intro-corner bl"></div>
+    <div class="intro-corner br"></div>
+    <div class="intro-scanline"></div>
+    <div class="intro-noise"></div>
+    <div class="intro-hud-top">ZANITH — SYSTEM INITIALIZING</div>
+    <div class="intro-hud-bottom">
+      <span id="introProgress">▋▋▋▋▋▋▋▋▋▋ 0%</span>
+    </div>
+    <video id="introVideo" autoplay muted playsinline>
+      <source src="Video Project.mp4" type="video/mp4">
+    </video>
+    <button id="introSkip">SKIP ▶</button>
+  </div>
+
   <!-- カーソル -->
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
@@ -1125,7 +1344,11 @@
       <span class="region-badge">HOKKAIDO</span>
     </div>
     <p class="hero-sub">ZANITH — 経営課題解決パートナー</p>
-    <h1 class="hero-title">ZANITH</h1>
+    <div class="hero-video-wrap">
+      <video autoplay muted loop playsinline>
+        <source src="Video Project.mp4" type="video/mp4">
+      </video>
+    </div>
     <p class="hero-tagline" id="heroTagline"><span class="typewriter-cursor"></span></p>
     <p class="hero-sub-tagline">提案だけして終わりではありません。<span>導入・定着まで伴走します。</span></p>
     <div class="hero-btns">
@@ -1410,26 +1633,26 @@
       <p class="section-desc">課題の規模・内容によって変動しますが、参考としてご覧ください。</p>
       <div class="pricing-table">
         <div class="pricing-row">
-          <div class="pricing-phase">PHASE 0<span>現状把握・課題整理</span></div>
+          <div class="pricing-phase">PHASE 1<span>現状把握・課題整理</span></div>
           <p class="pricing-desc">現場に入り、業務フローと課題の優先順位を整理します。何から始めるべきかを明確にするフェーズです。</p>
           <div class="pricing-price">
-            <p class="price-main">月10万円〜</p>
+            <p class="price-main">月5〜8万円</p>
             <p class="price-duration">1〜2ヶ月</p>
           </div>
         </div>
         <div class="pricing-row">
-          <div class="pricing-phase">PHASE 1<span>仕組みの設計・導入</span></div>
+          <div class="pricing-phase">PHASE 2<span>仕組みの設計・導入</span></div>
           <p class="pricing-desc">合意した課題から着手。システム設計・実装・運用開始まで一貫して支援します。</p>
           <div class="pricing-price">
-            <p class="price-main">月15〜20万円</p>
+            <p class="price-main">月10〜20万円</p>
             <p class="price-duration">3〜6ヶ月</p>
           </div>
         </div>
         <div class="pricing-row">
-          <div class="pricing-phase">PHASE 2<span>定着・拡張支援</span></div>
+          <div class="pricing-phase">PHASE 3<span>定着・拡張支援</span></div>
           <p class="pricing-desc">効果測定・改善・範囲拡大を継続的にサポートします。成果が出るまで離れません。</p>
           <div class="pricing-price">
-            <p class="price-main">月20〜30万円</p>
+            <p class="price-main">月15〜30万円</p>
             <p class="price-duration">継続</p>
           </div>
         </div>
@@ -1448,10 +1671,11 @@
           Zanithは2026年8月に本格始動します。<br>
           先行登録いただいた方には、サービス開始のご案内・初回相談の優先案内をお届けします。
         </p>
-        <form class="preregister-form" action="https://formspree.io/f/YOUR_PREREGISTER_FORM_ID" method="POST">
+        <form class="preregister-form" id="preregisterForm">
           <input type="email" name="email" placeholder="メールアドレスを入力" required>
           <button type="submit" class="btn-register">登録する</button>
         </form>
+        <p id="preregisterThanks" style="display:none;color:var(--cyan);margin-top:1rem;">ご登録ありがとうございます。本格始動時にご連絡します。</p>
         <p class="preregister-note">登録情報はZanithからのご案内にのみ使用します。</p>
       </div>
     </div>
@@ -1473,7 +1697,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-q">費用はどのくらいかかりますか？</button>
-          <div class="faq-a"><p>まず現状を把握するフェーズ（PHASE 0）は月10万円〜が目安です。その後の支援規模・内容によって変動します。初回相談は無料ですので、まずはご連絡ください。</p></div>
+          <div class="faq-a"><p>まず現状を把握するフェーズ（PHASE 1）は月5〜8万円が目安です。その後の支援規模・内容によって変動します。初回相談は無料ですので、まずはご連絡ください。</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">今すぐ相談できますか？</button>
@@ -1493,7 +1717,7 @@
       <p class="section-label">CONTACT</p>
       <h2 class="section-title">お問い合わせ</h2>
       <p class="section-desc">まずは現状の課題をお聞かせください。<br><small style="color:var(--text-dim);font-size:0.8rem;">※現在は準備期間中のため、ご返信まで3〜5営業日いただく場合があります。2026年8月の本格始動後はより迅速に対応いたします。</small></p>
-      <form action="https://formspree.io/f/YOUR_CONTACT_FORM_ID" method="POST">
+      <form id="contactForm">
         <div class="form-group">
           <label>会社名・屋号<span class="req">*</span></label>
           <input type="text" name="company" required>
@@ -1523,6 +1747,7 @@
         <button type="submit" class="btn-submit">送信する</button>
         <p class="contact-note">お問い合わせ先：<span style="color:var(--cyan);">info@zanith.jp</span></p>
       </form>
+      <p id="contactThanks" style="display:none;color:var(--cyan);margin-top:1.5rem;text-align:center;">お問い合わせありがとうございます。3〜5営業日以内にご返信いたします。</p>
     </div>
   </section>
 
@@ -1533,16 +1758,69 @@
   </footer>
 
   <script>
+    // ===== イントロオーバーレイ =====
+    (function() {
+      const overlay = document.getElementById('introOverlay');
+      const video   = document.getElementById('introVideo');
+      const skipBtn = document.getElementById('introSkip');
+      const progress = document.getElementById('introProgress');
+
+      // 同一セッションで2回目は非表示
+      if (sessionStorage.getItem('zanith_intro_done')) {
+        overlay.style.display = 'none';
+        return;
+      }
+
+      // プログレスバー更新
+      function updateProgress() {
+        if (!video.duration) return;
+        const pct = Math.floor((video.currentTime / video.duration) * 100);
+        const filled = Math.floor(pct / 10);
+        const bar = '▋'.repeat(filled) + '░'.repeat(10 - filled);
+        progress.textContent = bar + ' ' + pct + '%';
+      }
+      video.addEventListener('timeupdate', updateProgress);
+
+      // 終了 or スキップ → フェードアウト
+      function dismiss() {
+        sessionStorage.setItem('zanith_intro_done', '1');
+        overlay.classList.add('fade-out');
+        setTimeout(() => { overlay.style.display = 'none'; }, 820);
+      }
+
+      video.addEventListener('ended', dismiss);
+      skipBtn.addEventListener('click', dismiss);
+    })();
+
     // ===== カーソル =====
     const dot = document.getElementById('cursorDot');
     const glow = document.getElementById('cursorGlow');
     let mouseX = 0, mouseY = 0;
     let glowX = 0, glowY = 0;
 
+    let lastSparkTime = 0;
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX; mouseY = e.clientY;
       dot.style.left = mouseX + 'px';
       dot.style.top  = mouseY + 'px';
+
+      // びりびり火花
+      const now = Date.now();
+      if (now - lastSparkTime < 45) return;
+      lastSparkTime = now;
+      const count = 2 + Math.floor(Math.random() * 2);
+      for (let i = 0; i < count; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'cursor-spark' + (Math.random() < 0.25 ? ' warm' : '');
+        const angle = Math.random() * Math.PI * 2;
+        const dist  = 8 + Math.random() * 22;
+        spark.style.left = mouseX + 'px';
+        spark.style.top  = mouseY + 'px';
+        spark.style.setProperty('--sx', (Math.cos(angle) * dist).toFixed(1) + 'px');
+        spark.style.setProperty('--sy', (Math.sin(angle) * dist).toFixed(1) + 'px');
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 450);
+      }
     });
 
     // グローは少し遅延して追う
@@ -1687,6 +1965,61 @@
         document.body.style.overflow = '';
       });
     });
+
+    // ===== フォーム送信（Google Apps Script） =====
+    const GAS_URL = 'YOUR_GAS_DEPLOY_URL'; // デプロイ後にURLを貼り付ける
+
+    function submitToGAS(payload, btn, formEl, thanksEl) {
+      btn.disabled = true;
+      btn.textContent = '送信中...';
+      fetch(GAS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(() => {
+        formEl.style.display = 'none';
+        thanksEl.style.display = 'block';
+      }).catch(() => {
+        btn.disabled = false;
+        btn.textContent = btn.dataset.label;
+        alert('送信に失敗しました。お手数ですが info@zanith.jp までご連絡ください。');
+      });
+    }
+
+    const contactForm = document.getElementById('contactForm');
+    const contactThanks = document.getElementById('contactThanks');
+    if (contactForm) {
+      const submitBtn = contactForm.querySelector('.btn-submit');
+      submitBtn.dataset.label = submitBtn.textContent;
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fd = new FormData(contactForm);
+        submitToGAS({
+          type:    'contact',
+          company: fd.get('company'),
+          name:    fd.get('name'),
+          email:   fd.get('email'),
+          region:  fd.get('region'),
+          message: fd.get('message')
+        }, submitBtn, contactForm, contactThanks);
+      });
+    }
+
+    const preregisterForm = document.getElementById('preregisterForm');
+    const preregisterThanks = document.getElementById('preregisterThanks');
+    if (preregisterForm) {
+      const regBtn = preregisterForm.querySelector('.btn-register');
+      regBtn.dataset.label = regBtn.textContent;
+      preregisterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fd = new FormData(preregisterForm);
+        submitToGAS({
+          type:  'preregister',
+          email: fd.get('email')
+        }, regBtn, preregisterForm, preregisterThanks);
+      });
+    }
 
     // ===== FAQアコーディオン =====
     document.querySelectorAll('.faq-q').forEach(btn => {
