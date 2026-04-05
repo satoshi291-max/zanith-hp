@@ -53,7 +53,7 @@
       {
         "@type": "Question",
         "name": "Zanithの費用・料金はいくらですか？",
-        "acceptedAnswer": { "@type": "Answer", "text": "現状把握フェーズ（PHASE 1）は月5〜8万円が目安です。支援規模・内容によって変動します。初回相談は無料です。" }
+        "acceptedAnswer": { "@type": "Answer", "text": "月額10万円〜が目安です。正社員1名の採用・育成コストと同等以下で、業務代行チームが動きます。お問い合わせ後に無料診断レポートをお送りします。" }
       },
       {
         "@type": "Question",
@@ -664,6 +664,32 @@
 
     .service-card h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 0.8rem; letter-spacing: 0.05em; }
     .service-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.9; }
+
+    /* 対応業種 */
+    .industry-section { margin-top: 3.5rem; }
+    .industry-section-label { font-family: 'Orbitron', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--cyan); margin-bottom: 0.8rem; }
+    .industry-section h3 { font-size: 1rem; color: var(--text); margin-bottom: 1.5rem; letter-spacing: 0.05em; }
+    .industry-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .industry-tag {
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .industry-tag:hover { border-color: var(--cyan-dim); color: var(--text); }
+
+    /* 料金アンカー */
+    .pricing-anchor {
+      text-align: center;
+      padding: 2rem 2.5rem;
+      border: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+      background: rgba(0,229,255,0.02);
+    }
+    .pricing-anchor p { font-size: 0.95rem; color: var(--text-dim); line-height: 2.2; }
+    .pricing-anchor strong { color: var(--cyan); font-size: 1.15rem; }
 
     /* ===== 事例スライダー ===== */
     #cases {
@@ -1445,6 +1471,20 @@
         <p>「何が問題かわからない」状態から整理します。現状分析・優先順位付け・改善ロードマップの設計を行い、次の一手を明確にします。</p>
       </div>
     </div>
+    <div class="industry-section fade-in">
+      <p class="industry-section-label">INDUSTRIES</p>
+      <h3>対応業種</h3>
+      <div class="industry-grid">
+        <span class="industry-tag">飲食・給食</span>
+        <span class="industry-tag">宿泊・ホテル</span>
+        <span class="industry-tag">介護・福祉</span>
+        <span class="industry-tag">食品製造</span>
+        <span class="industry-tag">農業・農産物加工</span>
+        <span class="industry-tag">小売・EC</span>
+        <span class="industry-tag">建設・設備</span>
+        <span class="industry-tag">その他中小企業</span>
+      </div>
+    </div>
   </section>
 
   <!-- 対象エリアマップ -->
@@ -1630,34 +1670,32 @@
     <div class="pricing-inner fade-in">
       <p class="section-label">PRICING</p>
       <h2 class="section-title">料金の目安</h2>
-      <p class="section-desc">課題の規模・内容によって変動しますが、参考としてご覧ください。</p>
+      <p class="section-desc">人を雇うより確実で、コンサルより安い。成果物だけが届きます。</p>
+      <div class="pricing-anchor fade-in">
+        <p>正社員1名の採用・育成コストは年間<strong>300〜500万円</strong>。<br>
+        同じ予算で、専門チームが業務をまるごと代行します。<br>
+        <span style="font-size:0.82rem;color:var(--text-dim);">指示不要。毎月アウトプットが届くだけです。</span></p>
+      </div>
       <div class="pricing-table">
         <div class="pricing-row">
-          <div class="pricing-phase">PHASE 1<span>現状把握・課題整理</span></div>
-          <p class="pricing-desc">現場に入り、業務フローと課題の優先順位を整理します。何から始めるべきかを明確にするフェーズです。</p>
+          <div class="pricing-phase">スターター<span>月次業務代行</span></div>
+          <p class="pricing-desc">月次レポート・問い合わせ対応・定型業務処理をまるごと代行。何を頼むか考える必要もありません。</p>
           <div class="pricing-price">
-            <p class="price-main">月5〜8万円</p>
-            <p class="price-duration">1〜2ヶ月</p>
+            <p class="price-main">月10万円〜</p>
+            <p class="price-duration">継続</p>
           </div>
         </div>
         <div class="pricing-row">
-          <div class="pricing-phase">PHASE 2<span>仕組みの設計・導入</span></div>
-          <p class="pricing-desc">合意した課題から着手。システム設計・実装・運用開始まで一貫して支援します。</p>
+          <div class="pricing-phase">フルBPO<span>業務代行＋戦略顧問</span></div>
+          <p class="pricing-desc">複数業務の全面代行に加え、月次経営レポート・戦略立案まで対応。社長は意思決定だけに集中できます。</p>
           <div class="pricing-price">
-            <p class="price-main">月10〜20万円</p>
-            <p class="price-duration">3〜6ヶ月</p>
-          </div>
-        </div>
-        <div class="pricing-row">
-          <div class="pricing-phase">PHASE 3<span>定着・拡張支援</span></div>
-          <p class="pricing-desc">効果測定・改善・範囲拡大を継続的にサポートします。成果が出るまで離れません。</p>
-          <div class="pricing-price">
-            <p class="price-main">月15〜30万円</p>
+            <p class="price-main">月25万円〜</p>
             <p class="price-duration">継続</p>
           </div>
         </div>
       </div>
-      <p class="pricing-note">※上記はあくまで目安です。規模・内容によって変動します。まずは現状をお聞かせください。<strong style="color:var(--text);">初回相談は無料</strong>です。</p>
+      <p class="pricing-note">※お問い合わせ後、御社の現状を分析した<strong style="color:var(--text);">無料診断レポート</strong>をお送りします。<br>
+      ※初期分析・システム構築は別途お見積もりします。まずはご相談ください。</p>
     </div>
   </section>
 
@@ -1697,7 +1735,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-q">費用はどのくらいかかりますか？</button>
-          <div class="faq-a"><p>まず現状を把握するフェーズ（PHASE 1）は月5〜8万円が目安です。その後の支援規模・内容によって変動します。初回相談は無料ですので、まずはご連絡ください。</p></div>
+          <div class="faq-a"><p>月額10万円〜が目安です。正社員1名の採用・育成コスト（年間300〜500万円）と同等以下で、業務代行チームが動き始めます。まずはお問い合わせ後にお送りする無料診断レポートをご覧ください。</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">今すぐ相談できますか？</button>
@@ -1719,35 +1757,100 @@
       <p class="section-desc">まずは現状の課題をお聞かせください。<br><small style="color:var(--text-dim);font-size:0.8rem;">※現在は準備期間中のため、ご返信まで3〜5営業日いただく場合があります。2026年8月の本格始動後はより迅速に対応いたします。</small></p>
       <form id="contactForm">
         <div class="form-group">
-          <label>会社名・屋号<span class="req">*</span></label>
-          <input type="text" name="company" required>
+          <label>業種<span class="req">*</span></label>
+          <select name="industry" required>
+            <option value="">選択してください</option>
+            <option value="food_service">飲食・給食</option>
+            <option value="hotel">宿泊・ホテル</option>
+            <option value="care">介護・福祉</option>
+            <option value="food_mfg">食品製造</option>
+            <option value="agriculture">農業・農産物加工</option>
+            <option value="retail">小売・EC</option>
+            <option value="construction">建設・設備</option>
+            <option value="other">その他</option>
+          </select>
         </div>
         <div class="form-group">
-          <label>お名前<span class="req">*</span></label>
-          <input type="text" name="name" required>
+          <label>従業員規模<span class="req">*</span></label>
+          <select name="company_size" required>
+            <option value="">選択してください</option>
+            <option value="small">〜10名</option>
+            <option value="medium">11〜50名</option>
+            <option value="large">51名以上</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>エリア<span class="req">*</span></label>
+          <select name="region" required>
+            <option value="">選択してください</option>
+            <option value="hokkaido">北海道</option>
+            <option value="aomori">青森県</option>
+            <option value="iwate">岩手県</option>
+            <option value="miyagi">宮城県</option>
+            <option value="akita">秋田県</option>
+            <option value="yamagata">山形県</option>
+            <option value="fukushima">福島県</option>
+            <option value="ibaraki">茨城県</option>
+            <option value="tochigi">栃木県</option>
+            <option value="gunma">群馬県</option>
+            <option value="saitama">埼玉県</option>
+            <option value="chiba">千葉県</option>
+            <option value="tokyo">東京都</option>
+            <option value="kanagawa">神奈川県</option>
+            <option value="niigata">新潟県</option>
+            <option value="toyama">富山県</option>
+            <option value="ishikawa">石川県</option>
+            <option value="fukui">福井県</option>
+            <option value="yamanashi">山梨県</option>
+            <option value="nagano">長野県</option>
+            <option value="shizuoka">静岡県</option>
+            <option value="aichi">愛知県</option>
+            <option value="mie">三重県</option>
+            <option value="shiga">滋賀県</option>
+            <option value="kyoto">京都府</option>
+            <option value="osaka">大阪府</option>
+            <option value="hyogo">兵庫県</option>
+            <option value="nara">奈良県</option>
+            <option value="wakayama">和歌山県</option>
+            <option value="tottori">鳥取県</option>
+            <option value="shimane">島根県</option>
+            <option value="okayama">岡山県</option>
+            <option value="hiroshima">広島県</option>
+            <option value="yamaguchi">山口県</option>
+            <option value="tokushima">徳島県</option>
+            <option value="kagawa">香川県</option>
+            <option value="ehime">愛媛県</option>
+            <option value="kochi">高知県</option>
+            <option value="fukuoka">福岡県</option>
+            <option value="saga">佐賀県</option>
+            <option value="nagasaki">長崎県</option>
+            <option value="kumamoto">熊本県</option>
+            <option value="oita">大分県</option>
+            <option value="miyazaki">宮崎県</option>
+            <option value="kagoshima">鹿児島県</option>
+            <option value="okinawa">沖縄県</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>一番困っていること<span class="req">*</span></label>
+          <textarea name="message" placeholder="どんな小さなことでも構いません。現状困っていることをそのままお書きください。（200字程度）" maxlength="400" required></textarea>
         </div>
         <div class="form-group">
           <label>メールアドレス<span class="req">*</span></label>
           <input type="email" name="email" required>
         </div>
         <div class="form-group">
-          <label>所在地域</label>
-          <select name="region">
-            <option value="">選択してください</option>
-            <option value="ehime">愛媛県</option>
-            <option value="ibaraki">茨城県</option>
-            <option value="hokkaido">北海道</option>
-            <option value="other">その他</option>
-          </select>
+          <label>会社名・担当者名<small style="color:var(--text-dim);margin-left:0.5rem;font-weight:normal;">任意（匿名でも可）</small></label>
+          <input type="text" name="company" placeholder="任意">
         </div>
-        <div class="form-group">
-          <label>現在の課題・ご相談内容<span class="req">*</span></label>
-          <textarea name="message" placeholder="どんな小さなことでも構いません。現状困っていることをそのままお書きください。" required></textarea>
-        </div>
-        <button type="submit" class="btn-submit">送信する</button>
-        <p class="contact-note">お問い合わせ先：<span style="color:var(--cyan);">info@zanith.jp</span></p>
+        <button type="submit" class="btn-submit">無料診断を依頼する</button>
+        <p class="contact-note">送信後、御社の現状を分析した無料診断レポートをお送りします。<br>
+        <span style="color:var(--text-dim);font-size:0.8rem;">お問い合わせ先：info@zanith.jp</span></p>
       </form>
-      <p id="contactThanks" style="display:none;color:var(--cyan);margin-top:1.5rem;text-align:center;">お問い合わせありがとうございます。3〜5営業日以内にご返信いたします。</p>
+      <p id="contactThanks" style="display:none;color:var(--cyan);margin-top:1.5rem;text-align:center;">
+        お問い合わせありがとうございます。<br>
+        御社の現状を分析した無料診断レポートを数日以内にお送りします。
+      </p>
     </div>
   </section>
 
@@ -1996,12 +2099,13 @@
         e.preventDefault();
         const fd = new FormData(contactForm);
         submitToGAS({
-          type:    'contact',
-          company: fd.get('company'),
-          name:    fd.get('name'),
-          email:   fd.get('email'),
-          region:  fd.get('region'),
-          message: fd.get('message')
+          type:         'contact',
+          industry:     fd.get('industry'),
+          company_size: fd.get('company_size'),
+          region:       fd.get('region'),
+          message:      fd.get('message'),
+          email:        fd.get('email'),
+          company:      fd.get('company') || ''
         }, submitBtn, contactForm, contactThanks);
       });
     }
