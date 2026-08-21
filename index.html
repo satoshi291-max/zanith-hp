@@ -687,7 +687,7 @@
   </div>
 
   <nav>
-    <div class="nav-logo"><img src="Zanith(黒).png" alt="ZANITH" style="filter:invert(0.9) sepia(0.15);"></div>
+    <div class="nav-logo"><img src="logo.png" alt="ZANITH" style="filter:invert(0.9) sepia(0.15);"></div>
     <ul class="nav-links">
       <li><a href="#mission">思想</a></li>
       <li><a href="#approach">やること</a></li>
@@ -1174,6 +1174,7 @@
         </div>
         <button type="submit" class="btn-submit">相談内容を送る</button>
         <p class="contact-note">内容を拝見し、Zanithからご返信します。売り込みの電話などは行いません。<br>
+        送信をもって<a href="privacy.html" style="color:var(--amber);border-bottom:1px solid var(--line-strong);">プライバシーポリシー</a>に同意いただいたものとみなします。<br>
         <span style="font-size:0.8rem;">お問い合わせ先：info@zanith.jp</span></p>
       </form>
       <p id="contactThanks" style="display:none;color:var(--amber);margin-top:1.5rem;text-align:center;">
@@ -1184,9 +1185,10 @@
   </section>
 
   <footer>
-    <div class="footer-logo"><img src="Zanith(黒).png" alt="ZANITH" style="filter:invert(0.9) sepia(0.15);"></div>
+    <div class="footer-logo"><img src="logo.png" alt="ZANITH" style="filter:invert(0.9) sepia(0.15);"></div>
     <p style="margin-bottom:0.4rem;">&copy; 2026 Zanith. All rights reserved.</p>
     <p>info@zanith.jp</p>
+    <p style="margin-top:0.9rem;"><a href="privacy.html" style="color:var(--ink-dim);border-bottom:1px solid var(--line);font-size:0.82rem;">プライバシーポリシー</a></p>
   </footer>
 
   <script>
@@ -1213,9 +1215,28 @@
     });
 
     // ===== フォーム送信（Google Apps Script） =====
-    const GAS_URL = 'YOUR_GAS_DEPLOY_URL'; // 🔴 GASデプロイ後にURLを貼り付ける（未差替のままだと送信不可）
+    const GAS_URL = 'YOUR_GAS_DEPLOY_URL'; // 🔴 GASデプロイ後にURLを貼り付ける（未差替のままはメール送信へ自動フォールバック）
+    const GAS_READY = /^https:\/\//.test(GAS_URL);
+
+    // GAS未設定のまま公開されている間は、送信内容をメール作成画面へ引き渡す。
+    // （no-corsのfetchは404でも成功扱いになるため、未設定のまま送ると
+    //   「ありがとうございました」だけ出て問い合わせが消える。それを防ぐ）
+    function fallbackToMail(payload, btn) {
+      const lines = Object.entries(payload)
+        .filter(([k, v]) => k !== 'type' && v)
+        .map(([k, v]) => k + ': ' + v);
+      const subject = payload.type === 'preregister'
+        ? '【先行登録】Zanith'
+        : '【ご相談】Zanith サイトより';
+      const body = lines.join('\n') + '\n\n---\nZanith サイトのフォームより';
+      window.location.href = 'mailto:info@zanith.jp?subject='
+        + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      btn.disabled = false;
+      btn.textContent = btn.dataset.label;
+    }
 
     function submitToGAS(payload, btn, formEl, thanksEl) {
+      if (!GAS_READY) { fallbackToMail(payload, btn); return; }
       btn.disabled = true;
       btn.textContent = '送信中...';
       fetch(GAS_URL, {
